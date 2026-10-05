@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hiram Manjarrez — Filmmaker / Cinematographer</title>
-<meta name="description" content="Filmmaker. Observo. Espero. Disparo. Documentales, videos musicales, fashion films y comerciales. Base en Dubái · Worldwide.">
-<!-- ▶ AL COMPARTIR EL LINK (WhatsApp, Instagram, email) se verá esta tarjeta.
-     Sube tu mejor frame como frames/og.jpg (1200x630px) y ajusta la URL cuando tengas dominio: -->
-<meta property="og:title" content="Hiram Manjarrez — Filmmaker / Cinematographer">
-<meta property="og:description" content="Observo. Espero. Disparo. Documental, videos musicales, comerciales y fashion films.">
-<meta property="og:image" content="frames/og.jpg">
+<title>Hiram Manjarrez — Cinematographer & Director</title>
+<meta name="description" content="Cinematographer and director based in Dubai. Visual direction for brands: look, treatment and shoot. Documentaries, music videos, fashion films and brand films. Worldwide.">
+<!-- Tarjeta que se ve al compartir el link (WhatsApp, LinkedIn, email). La imagen es frames/og.jpg (1200x630). -->
+<meta property="og:title" content="Hiram Manjarrez — Cinematographer & Director">
+<meta property="og:description" content="Cinematographer and director based in Dubai. Visual direction for brands: look, treatment and shoot.">
+<meta property="og:image" content="https://www.hiramanjarrez.com/frames/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://www.hiramanjarrez.com/">
+<meta name="twitter:card" content="summary_large_image">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230E0D0B'/><text x='50' y='68' font-size='52' font-family='monospace' font-weight='bold' fill='%23D2A24C' text-anchor='middle'>H</text></svg>"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,7 +96,17 @@ nav ul a:hover{color:var(--papel)}
 }
 .hero .s-nombre{color:var(--papel);font-size:1.1rem}
 .hero .s-rol{color:var(--tungsteno);letter-spacing:.28em}
-.hero .s-base{color:var(--polvo);font-size:.95rem}
+.hero .s-servicio{color:var(--papel);font-size:1rem;max-width:30em;line-height:1.35}
+.hero .s-base{
+  display:inline-flex;align-items:center;gap:.65em;margin-top:6px;padding:9px 18px;
+  border:1px solid rgba(244,240,232,.34);border-radius:999px;background:rgba(13,12,10,.52);
+  color:var(--papel);font-family:'Space Mono',monospace;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;
+}
+.hero .s-dubai{color:var(--tungsteno);font-weight:700;font-size:1.08em}
+.hero .s-base .punto{width:8px;height:8px;border-radius:50%;background:var(--tungsteno);flex:none;animation:late 2.2s ease-out infinite}
+@keyframes late{0%{box-shadow:0 0 0 0 rgba(210,162,76,.6)}70%{box-shadow:0 0 0 9px rgba(210,162,76,0)}100%{box-shadow:0 0 0 0 rgba(210,162,76,0)}}
+@media(max-width:480px){.hero .s-base{font-size:.72rem;letter-spacing:.1em;padding:8px 14px;gap:.55em}.hero .s-dubai{font-size:1.15em}}
+@media(prefers-reduced-motion:reduce){.hero .s-base .punto{animation:none}}
 @media(prefers-reduced-motion:reduce){
   .hero h1 span,.hero .sub{animation:none;opacity:1;filter:none}
   .hud.rec .dot{animation:none}
@@ -131,14 +144,34 @@ h2{
 /* Manifiesto */
 .manifiesto .cols{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(30px,5vw,70px);align-items:start}
 @media(max-width:820px){.manifiesto .cols{grid-template-columns:1fr}}
+/* En escritorio la foto va a la izquierda, para que la cámara apunte hacia el texto */
+@media(min-width:821px){.manifiesto .cols{grid-template-columns:1fr 1.5fr}.manifiesto .retrato{order:-1}}
 .retrato{
   position:relative;aspect-ratio:4/5;overflow:hidden;
   background:linear-gradient(160deg,#17150F 0%,#0E0D0B 60%,#1A1712 100%);
   border:1px solid var(--linea);
 }
 .retrato img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.9)}
-.retrato .etiqueta{position:absolute;left:14px;bottom:12px;color:var(--papel);text-shadow:0 1px 8px rgba(0,0,0,.7)}
+.retrato .etiqueta{position:absolute;left:14px;bottom:12px;color:#0d0c0a;font-weight:700;text-shadow:0 0 6px rgba(255,255,255,.55)}
 .retrato .placeholder-txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--polvo);opacity:.55;text-align:center;padding:0 20px}
+
+/* Carrusel de fotos (estilo Instagram): se desliza, con contador y puntos */
+.retrato.carrusel{aspect-ratio:auto;overflow:visible;border:0;background:none}
+.car-marco{position:relative;aspect-ratio:4/5;overflow:hidden;border:1px solid var(--linea);background:linear-gradient(160deg,#17150F 0%,#0E0D0B 60%,#1A1712 100%)}
+.car-pista{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.car-pista::-webkit-scrollbar{display:none}
+.car-pista:focus-visible{outline:2px solid var(--tungsteno);outline-offset:-2px}
+.car-slide{position:relative;flex:0 0 100%;height:100%;scroll-snap-align:center;scroll-snap-stop:always}
+.car-cuenta{position:absolute;top:12px;right:12px;padding:4px 10px;border-radius:999px;background:rgba(13,12,10,.62);color:var(--papel);font-size:.7rem;letter-spacing:.08em;pointer-events:none}
+.car-flecha{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:0;background:rgba(244,240,232,.88);color:#0d0c0a;font-size:1.5rem;line-height:1;padding:0 0 3px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity .2s}
+.car-marco:hover .car-flecha,.car-flecha:focus-visible{opacity:1}
+.car-flecha.prev{left:10px}.car-flecha.next{right:10px}
+.car-flecha[hidden]{display:none}
+@media(hover:none){.car-flecha{display:none}}
+.retrato .etiqueta.sobre-oscuro{color:var(--papel);font-weight:400;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+.car-puntos{display:flex;justify-content:center;gap:6px;margin-top:12px}
+.car-puntos span{width:6px;height:6px;border-radius:50%;background:rgba(244,240,232,.28);transition:background .2s}
+.car-puntos span.activo{background:var(--tungsteno)}
 
 .manifiesto p{
   font-size:clamp(1.35rem,2.8vw,2.05rem);line-height:1.42;font-weight:200;
@@ -173,6 +206,7 @@ h2{
   display:none;align-items:center;justify-content:center;padding:clamp(16px,4vw,60px);
 }
 .lightbox.abierto{display:flex}
+.lightbox.vertical iframe{width:auto;height:min(86vh,1100px);aspect-ratio:9/16;max-width:100%}
 .lightbox video,.lightbox iframe{
   width:min(1200px,100%);aspect-ratio:16/9;height:auto;border:1px solid var(--linea);background:#000;
 }
@@ -190,6 +224,16 @@ h2{
   opacity:.45;filter:saturate(.85) contrast(1.05);
 }
 .hero > *{position:relative}
+
+
+/* Fondo temporal de la portada (previsualización). Cuando tengas el reel, se reemplaza por el <video>. */
+.hero .hero-fondo{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:42% 55%;
+  opacity:.36;filter:saturate(.85) contrast(1.05);
+}
+/* Las esquinas del visor van fijas en los bordes de la portada */
+.hero > .bracket{position:absolute}
+.hero h1 span,.hero .sub{text-shadow:0 2px 26px rgba(0,0,0,.55)}
 
 /* Galería de trabajo */
 .filtros{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 26px}
@@ -209,12 +253,12 @@ h2{
 .galeria{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:760px){.galeria{grid-template-columns:1fr}}
 .frame{
-  position:relative;display:block;aspect-ratio:2.39/1;overflow:hidden;
+  position:relative;display:block;aspect-ratio:16/9;overflow:hidden;
   background:
     linear-gradient(135deg,#17150F 0%,#0E0D0B 55%,#1A1712 100%);
   border:1px solid var(--linea);
 }
-.frame img,.frame video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease,filter .4s;filter:saturate(.8) contrast(1.06)}
+.frame img,.frame video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
 .frame:hover img,.frame:hover video{transform:scale(1.03)}
 .frame .etiqueta{
   position:absolute;left:14px;bottom:12px;color:var(--papel);
@@ -233,6 +277,14 @@ h2{
 }
 .frame:hover .play{color:var(--tungsteno)}
 
+
+/* Formato cine: todas las portadas en franja 2.39:1 sobre negro, para que la galería se vea uniforme */
+.frame:not(.vert){background:#000}
+.frame:not(.vert) img{position:absolute;left:0;top:50%;width:100%;height:auto;aspect-ratio:2.39/1;object-fit:cover;transform:translateY(-50%) scale(var(--zoom,1));transform-origin:var(--origen,50% 50%)}
+.frame:not(.vert):hover img{transform:translateY(-50%) scale(calc(var(--zoom,1) * 1.03))}
+.frame:not(.vert){overflow:hidden}
+.frame:not(.vert) img{clip-path:inset(0)}
+
 /* Servicios: franja de formatos */
 .formatos{display:flex;flex-wrap:wrap;column-gap:22px;row-gap:14px;align-items:baseline;margin:8px 0 30px}
 .formatos b{
@@ -245,6 +297,13 @@ h2{
 
 /* Territorios: tarjetas con fotograma */
 .terr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+/* 5 países: la última fila queda centrada. Si vuelve a haber 6 tarjetas, borrar este bloque. */
+@media(min-width:1001px){
+  .terr-grid{grid-template-columns:repeat(6,1fr)}
+  .terr-card{grid-column:span 2}
+  .terr-card:nth-child(4){grid-column:2 / span 2}
+  .terr-card:nth-child(5){grid-column:4 / span 2}
+}
 @media(max-width:1000px){.terr-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.terr-grid{grid-template-columns:1fr}}
 .terr-card{border:1px solid var(--linea);background:#12100D}
@@ -253,7 +312,7 @@ h2{
   background:linear-gradient(135deg,#17150F 0%,#0E0D0B 55%,#1A1712 100%);
   border-bottom:1px solid var(--linea);
 }
-.terr-card .mini img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.8) contrast(1.06)}
+.terr-card .mini img{width:100%;height:100%;object-fit:cover;display:block}
 .terr-card .mini .placeholder-txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--polvo);opacity:.5}
 .terr-card .info{padding:16px 18px 20px}
 .terr-card .lugar{display:block;margin-bottom:6px}
@@ -283,6 +342,15 @@ h2{
 .pista.video .clips i.sel{background:var(--tungsteno)}
 .pista.audio .clips i{background:#33382C;height:9px;align-self:center}
 
+
+/* Timeline real de DaVinci con cabezal animado */
+.tl-real{position:relative;border:1px solid var(--linea);overflow:hidden;background:#1c1c1f}
+.tl-real .tl-in{position:relative;container-type:inline-size}
+.tl-real img{display:block;width:100%;height:auto}
+.tl-real .cabezal{position:absolute;top:0;bottom:0;left:13.549%;width:2px;margin-left:-1px;background:#E5484D;box-shadow:0 0 8px rgba(229,72,77,.6);pointer-events:none}
+.tl-real .cabezal::before{content:"";position:absolute;top:1px;left:50%;width:12px;height:12px;margin-left:-6px;background:#E5484D;clip-path:polygon(0 0,100% 0,100% 55%,50% 100%,0 55%)}
+.tl-real .tc{position:absolute;left:0;top:.5%;width:13.445%;height:7%;display:flex;align-items:center;justify-content:center;background:#212126;color:#e9e9ec;font-family:'Space Mono',monospace;font-size:clamp(.5rem,1.25vw,1rem);font-size:clamp(8px,1.28cqw,18px);letter-spacing:.04em;pointer-events:none}
+
 /* Comparador de color (antes/después) */
 .compara-bloque{margin-top:clamp(48px,7vh,80px)}
 .compara-bloque h3{
@@ -290,10 +358,10 @@ h2{
   font-size:clamp(1.3rem,2.6vw,1.8rem);text-transform:uppercase;margin-bottom:8px;
 }
 .compara-bloque .nota{color:var(--polvo);margin-bottom:22px;max-width:36em}
-.compara{position:relative;aspect-ratio:2.39/1;overflow:hidden;border:1px solid var(--linea);--pos:50%}
+.compara{position:relative;aspect-ratio:2.39/1;overflow:hidden;border:1px solid var(--linea);--pos:68%}
 .compara img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .compara .c-antes.simulado{filter:saturate(.12) contrast(.78) brightness(1.08)}
-.compara .c-despues{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+.compara .c-despues{clip-path:inset(0 0 0 var(--pos))}
 .compara .c-linea{
   position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:var(--tungsteno);
   transform:translateX(-1px);pointer-events:none;
@@ -308,6 +376,7 @@ h2{
   opacity:0;cursor:ew-resize;
 }
 .compara .tag{position:absolute;bottom:12px;color:var(--papel);text-shadow:0 1px 8px rgba(0,0,0,.8);pointer-events:none}
+.compara .tag{transition:opacity .25s}
 .compara .tag.izq{left:14px}
 .compara .tag.der{right:14px}
 
@@ -326,6 +395,9 @@ h2{
 /* Proceso */
 .proceso .pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,56px)}
 @media(max-width:860px){.proceso .pasos{grid-template-columns:1fr}}
+.paso-foto{position:relative;aspect-ratio:4/3;overflow:hidden;margin:0 0 22px;border:1px solid var(--linea);background:linear-gradient(135deg,#17150F 0%,#0E0D0B 55%,#1A1712 100%)}
+.paso-foto img{width:100%;height:100%;object-fit:cover;display:block}
+.paso-foto.pendiente{display:flex;align-items:center;justify-content:center;color:var(--polvo);opacity:.7;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase}
 .paso .tc-num{color:var(--polvo);display:block;margin-bottom:14px}
 .paso h3{
   font-family:'Archivo',sans-serif;font-weight:800;font-stretch:118%;
@@ -333,6 +405,18 @@ h2{
 }
 .paso:nth-child(3) h3{color:var(--tungsteno)}
 .paso p{color:var(--polvo);font-size:1rem;max-width:30em}
+.proceso .alcance{margin-top:34px;color:var(--polvo);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;line-height:1.7;max-width:62em;opacity:.85}
+
+
+/* Servicios */
+.ofertas .lead{color:var(--polvo);max-width:36em;margin:-14px 0 40px}
+.ofertas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.oferta{display:flex;flex-direction:column;gap:12px;border:1px solid var(--linea);background:#12100D;padding:26px 24px 22px}
+.oferta .num{color:var(--tungsteno)}
+.oferta h3{font-family:'Archivo',sans-serif;font-weight:800;font-stretch:118%;font-size:clamp(1.3rem,2.2vw,1.65rem);text-transform:uppercase;line-height:1.1}
+.oferta p{color:var(--polvo);font-size:1rem;max-width:30em;margin:0}
+.oferta .incluye{margin-top:auto;padding-top:16px;border-top:1px solid var(--linea);color:var(--papel);opacity:.8;line-height:1.6}
+@media(max-width:860px){.ofertas-grid{grid-template-columns:1fr;gap:14px}.oferta{padding:20px 20px 18px}}
 
 /* Contacto */
 .contacto{text-align:left}
@@ -361,6 +445,75 @@ footer{
   display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   color:var(--polvo);
 }
+
+/* ---------- CELULAR: listas largas -> filas que se deslizan de lado ---------- */
+@media(max-width:760px){
+  .wrap{--pad:clamp(20px,5vw,64px)}
+  /* pestañas: una sola fila deslizable */
+  .filtros{flex-wrap:nowrap;overflow-x:auto;gap:8px;margin:0 calc(-1*var(--pad)) 20px;padding:0 var(--pad);scroll-padding-inline:var(--pad);scrollbar-width:none;overscroll-behavior-x:contain}
+  .filtros::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;white-space:nowrap}
+  /* galería, territorios y pasos: carrusel con la siguiente tarjeta asomando */
+  .galeria,.galeria.vertical,.terr-grid,.proceso .pasos{
+    display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;
+    margin-left:calc(-1*var(--pad));margin-right:calc(-1*var(--pad));
+    padding-left:var(--pad);padding-right:var(--pad);scroll-padding-inline:var(--pad);
+    scrollbar-width:none;overscroll-behavior-x:contain;
+  }
+  .galeria::-webkit-scrollbar,.terr-grid::-webkit-scrollbar,.proceso .pasos::-webkit-scrollbar{display:none}
+  .galeria,.galeria.vertical{gap:12px;align-items:flex-start}
+  .galeria .frame{flex:0 0 82%;scroll-snap-align:start}
+  .galeria .frame.vert{flex:0 0 58%}
+  .terr-grid{gap:12px;align-items:stretch}
+  .terr-card{flex:0 0 78%;scroll-snap-align:start}
+  /* servicios: también en fila deslizable, con contador "01 / 03" */
+  .ofertas-grid{display:flex;grid-template-columns:none;gap:12px;align-items:stretch;overflow-x:auto;scroll-snap-type:x mandatory;
+    margin-left:calc(-1*var(--pad));margin-right:calc(-1*var(--pad));padding-left:var(--pad);padding-right:var(--pad);
+    scroll-padding-inline:var(--pad);scrollbar-width:none;overscroll-behavior-x:contain}
+  .ofertas-grid::-webkit-scrollbar{display:none}
+  .oferta{flex:0 0 84%;scroll-snap-align:start}
+  .oferta .num::after{content:" / 03";color:var(--polvo)}
+  .proceso .pasos{gap:18px;align-items:flex-start;counter-reset:paso}
+  .proceso .paso{flex:0 0 86%;scroll-snap-align:start;counter-increment:paso}
+  .proceso .paso .tc-num::after{content:"  ·  " counter(paso,decimal-leading-zero) " / 03";color:var(--tungsteno)}
+  /* timeline real: tamaño legible, se desliza de lado */
+  .tl-real{overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain}
+  .tl-real .tl-in{min-width:880px}
+}
+/* menú compacto en celular */
+@media(max-width:640px){
+  nav{padding:14px clamp(20px,5vw,64px)}
+  nav ul li:nth-child(1){display:none}
+  nav .logo{white-space:nowrap;font-size:.78rem;letter-spacing:.04em}
+  nav ul{gap:10px}
+  .nav-cta{white-space:nowrap;padding:8px 12px}
+}
+
+/* Indicadores de deslizar (solo celular) */
+.desliza,.fila-puntos{display:none}
+@media(max-width:760px){
+  .desliza{display:flex;align-items:center;gap:8px;color:var(--tungsteno);margin:0 0 12px;transition:opacity .5s}
+  .desliza i{font-style:normal;display:inline-block;animation:empuja 1.4s ease-in-out infinite}
+  .desliza.visto{opacity:0}
+  .fila-puntos{display:flex;justify-content:center;gap:6px;margin-top:14px}
+  .fila-puntos span{width:6px;height:6px;border-radius:50%;background:rgba(244,240,232,.28);transition:width .25s,background .25s}
+  .fila-puntos span.activo{width:18px;border-radius:3px;background:var(--tungsteno)}
+  .desliza.sin,.fila-puntos.sin{display:none}
+}
+@keyframes empuja{0%,100%{transform:translateX(0)}50%{transform:translateX(7px)}}
+@media(prefers-reduced-motion:reduce){.desliza i{animation:none}}
+
+/* Aviso temporal: sitio en construcción */
+.oculto-temp{display:none!important}
+.aviso-obra{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;align-items:center;justify-content:center;gap:14px;
+  padding:10px 52px calc(10px + env(safe-area-inset-bottom,0px)) 18px;background:rgba(13,12,10,.94);border-top:1px solid rgba(210,162,76,.55);
+  color:var(--papel);font-size:.7rem;letter-spacing:.12em;line-height:1.5;text-align:center;backdrop-filter:blur(4px)}
+.aviso-obra.cerrado{display:none}
+.aviso-cinta{flex:none;width:34px;height:10px;border-radius:2px;background:repeating-linear-gradient(135deg,var(--tungsteno) 0 6px,#0d0c0a 6px 12px)}
+.aviso-x{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:40px;height:40px;border:0;background:none;color:var(--papel);font-size:1.5rem;line-height:1;cursor:pointer;opacity:.75}
+.aviso-x:hover{opacity:1}
+body.con-aviso{padding-bottom:58px}
+@media(max-width:560px){.aviso-obra{font-size:.62rem;letter-spacing:.08em;gap:10px;padding-left:12px}.aviso-cinta{width:24px}body.con-aviso{padding-bottom:64px}}
 </style>
 </head>
 <body>
@@ -378,6 +531,8 @@ footer{
 </nav>
 
 <header class="hero">
+  <!-- FONDO TEMPORAL: quitar esta línea cuando el reel esté listo y descomentar el <video> de abajo -->
+  <img class="hero-fondo" src="frames/fondo-hero.jpg" alt="" aria-hidden="true">
   <!-- ▶ TU REEL AQUÍ: sube tu reel de 45–60s a la carpeta del sitio (ej. reel.mp4,
        exportado en H.264, 1080p, sin audio o con audio silenciado) y descomenta:
   <video autoplay muted loop playsinline poster="frames/poster.jpg" src="reel.mp4"></video>
@@ -394,10 +549,11 @@ footer{
   </h1>
   <div class="sub">
     <span class="s-nombre">Hiram Manjarrez</span>
-    <span class="s-rol mono">Filmmaker / Cinematographer</span>
-    <span class="s-base">Base en Dubái, EAU · Worldwide</span>
+    <span class="s-rol mono">Cinematographer &amp; Director</span>
+    <span class="s-servicio">Dirección visual para marcas: look, tratamiento y rodaje</span>
+    <span class="s-base"><i class="punto" aria-hidden="true"></i><span>Base en</span><span class="s-lugar"><b class="s-dubai">Dubái</b>, EAU · Worldwide</span></span>
   </div>
-  <button class="btn-reel" id="abrirReel" type="button"><span class="tri">▶</span> Ver reel — 60 seg</button>
+  <button class="btn-reel oculto-temp" id="abrirReel" type="button"><span class="tri">▶</span> Ver reel — 60 seg</button>
 </header>
 
 <main>
@@ -407,11 +563,12 @@ footer{
   <h2>Una mirada, todos los formatos</h2>
   <p class="gal-nota">Es la misma sensibilidad aplicada a formatos distintos. Cambia el encargo; la mirada no.</p>
   <div class="filtros" role="group" aria-label="Filtrar trabajos por formato">
-    <button class="chip activo" type="button" data-filtro="documental">Documental</button>
-    <button class="chip" type="button" data-filtro="musical">Videos musicales</button>
+    <button class="chip activo" type="button" data-filtro="comercial">Brand films</button>
+    <button class="chip" type="button" data-filtro="reels">Vertical / Reels</button>
     <button class="chip" type="button" data-filtro="fashion">Fashion films</button>
-    <button class="chip" type="button" data-filtro="comercial">Comercial</button>
-    <button class="chip" type="button" data-filtro="reels">Reels — 9:16</button>
+    <button class="chip" type="button" data-filtro="musical">Videos musicales</button>
+    <button class="chip" type="button" data-filtro="documental">Documental</button>
+    <button class="chip" type="button" data-filtro="cortos">Cortometrajes</button>
     <!-- ▶ Cuando tengas trabajos de real estate, descomenta esta pestaña
          y agrega frames con data-cat="realestate":
     <button class="chip" type="button" data-filtro="realestate">Real estate</button> -->
@@ -424,76 +581,177 @@ footer{
             · Vimeo:   https://player.vimeo.com/video/TU_ID?autoplay=1
             · YouTube: https://www.youtube.com/embed/TU_ID?autoplay=1
          3. El href es el respaldo si data-video está vacío (abre en otra pestaña). -->
-    <a class="frame" data-cat="documental" data-video="" href="#" target="_blank" rel="noopener">
-      <img src="https://picsum.photos/seed/janitzio/1200/502" alt="Placeholder temporal — reemplazar con frame de Janitzio" loading="lazy">
-      <span class="etiqueta mono"><span class="num">01</span> Día de Muertos · Janitzio — Documental</span>
+    <a class="frame" data-cat="comercial" data-video="https://player.vimeo.com/video/1231808911?h=9de905c5f1&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img style="object-position:50% 65%" src="https://i.vimeocdn.com/video/2207179420-6d887da925d9d5b2c5311e984c3b6a151e22f79e97c544b391db6d9c8f142ee0-d_2400?region=us" alt="Muebles Valdés Baluarte" loading="lazy">
+      <span class="etiqueta mono"><span class="num">01</span> Muebles Valdés Baluarte</span>
       <span class="play mono">▶ Ver</span>
     </a>
-    <a class="frame" data-cat="musical" data-video="" href="#" target="_blank" rel="noopener">
-      <img src="https://picsum.photos/seed/musical/1200/502" alt="Placeholder temporal — reemplazar con frame de video musical" loading="lazy">
-      <span class="etiqueta mono"><span class="num">02</span> Video musical</span>
+    <a class="frame" data-cat="comercial" data-video="https://player.vimeo.com/video/1231906336?h=a5b7683b87&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="https://i.vimeocdn.com/video/2207184940-2b8e21832f5689ed835a891790fc6ac19394c371392cd0a1ac979f3d8ef6ac8d-d_2400?region=us" alt="Yuniko Sushi" loading="lazy">
+      <span class="etiqueta mono"><span class="num">02</span> Yuniko Sushi</span>
       <span class="play mono">▶ Ver</span>
     </a>
-    <a class="frame" data-cat="fashion" data-video="" href="#" target="_blank" rel="noopener">
-      <img src="https://picsum.photos/seed/fashion/1200/502" alt="Placeholder temporal — reemplazar con frame de fashion film" loading="lazy">
-      <span class="etiqueta mono"><span class="num">03</span> Fashion film / Modelos</span>
+    <a class="frame" data-cat="comercial" data-video="https://player.vimeo.com/video/1231905935?h=b765f77605&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="https://i.vimeocdn.com/video/2207181218-05d8a0770d723eca37b16c75fff2949079c015d0adec80af6020e7124eb7f6ea-d_2400?region=us" alt="Sunday Spot — Amigas" loading="lazy">
+      <span class="etiqueta mono"><span class="num">03</span> Sunday Spot — Amigas</span>
       <span class="play mono">▶ Ver</span>
     </a>
-    <a class="frame" data-cat="comercial" data-video="" href="#" target="_blank" rel="noopener">
-      <img src="https://picsum.photos/seed/comercial/1200/502" alt="Placeholder temporal — reemplazar con frame de comercial" loading="lazy">
-      <span class="etiqueta mono"><span class="num">04</span> Comercial / Aston Martin</span>
+    <a class="frame" data-cat="comercial" data-video="https://player.vimeo.com/video/527440370?h=cd92b3e25f&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img style="object-position:50% 15%" src="https://i.vimeocdn.com/video/1091862848-9401ccef9a2ea732bd634190830bb6e7215ae02bb9a742157fcd4f868c74f84c-d_2400?region=us" alt="Salva — Reparación de iPhone" loading="lazy">
+      <span class="etiqueta mono"><span class="num">04</span> Salva — Reparación de iPhone</span>
       <span class="play mono">▶ Ver</span>
     </a>
-    <a class="frame" data-cat="documental" data-video="" href="#" target="_blank" rel="noopener">
-      <img src="https://picsum.photos/seed/sinaloa/1200/502" alt="Placeholder temporal — reemplazar con frame de Sinaloa" loading="lazy">
-      <span class="etiqueta mono"><span class="num">05</span> Sinaloa — Documental</span>
+    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-video="https://player.vimeo.com/video/1231919314?h=b15d98d889&autoplay=1" href="https://vimeo.com/1231919314" target="_blank" rel="noopener">
+      <span class="placeholder-txt mono">Vertical</span>
+      <span class="etiqueta mono"><span class="num">V1</span> <span class="titulo-auto">Valdés Baluarte · Kids</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
-    <a class="frame" data-cat="musical" data-video="" href="#" target="_blank" rel="noopener">
-      <img src="https://picsum.photos/seed/musical2/1200/502" alt="Placeholder temporal — reemplazar con frame musical o fashion" loading="lazy">
-      <span class="etiqueta mono"><span class="num">06</span> Video musical / Fashion film</span>
+    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-video="https://player.vimeo.com/video/1231919053?h=e5a7c7217f&autoplay=1" href="https://vimeo.com/1231919053" target="_blank" rel="noopener">
+      <span class="placeholder-txt mono">Vertical</span>
+      <span class="etiqueta mono"><span class="num">V2</span> <span class="titulo-auto">Platillos · Historia</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
-    <!-- ▶ REELS: exporta un frame vertical 9:16 de cada reel (1080x1920)
-         y cambia cada href por el link directo del reel en Instagram. -->
-    <a class="frame vert" data-cat="reels" href="https://www.instagram.com/hiramanjarrez/" target="_blank" rel="noopener">
-      <img src="https://picsum.photos/seed/reelA/540/960" alt="Placeholder temporal — reel" loading="lazy">
-      <span class="etiqueta mono"><span class="num">R1</span> Filmar sin dirigir</span>
+    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-video="https://player.vimeo.com/video/1231919101?h=7bc4b174b3&autoplay=1" href="https://vimeo.com/1231919101" target="_blank" rel="noopener">
+      <span class="placeholder-txt mono">Vertical</span>
+      <span class="etiqueta mono"><span class="num">V3</span> <span class="titulo-auto">Sunday Sushi Bar · Flambé</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
-    <a class="frame vert" data-cat="reels" href="https://www.instagram.com/hiramanjarrez/" target="_blank" rel="noopener">
-      <img src="https://picsum.photos/seed/reelB/540/960" alt="Placeholder temporal — reel" loading="lazy">
-      <span class="etiqueta mono"><span class="num">R2</span> Foco manual</span>
+    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-video="https://player.vimeo.com/video/1231919142?autoplay=1" href="https://vimeo.com/1231919142" target="_blank" rel="noopener">
+      <span class="placeholder-txt mono">Vertical</span>
+      <span class="etiqueta mono"><span class="num">V4</span> <span class="titulo-auto">Vertical</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
-    <a class="frame vert" data-cat="reels" href="https://www.instagram.com/hiramanjarrez/" target="_blank" rel="noopener">
-      <img src="https://picsum.photos/seed/reelC/540/960" alt="Placeholder temporal — reel" loading="lazy">
-      <span class="etiqueta mono"><span class="num">R3</span> Luz práctica</span>
+    <a class="frame" data-cat="fashion" data-video="https://player.vimeo.com/video/1231907245?h=fe31ebc97d&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="https://i.vimeocdn.com/video/2207184636-78aa7b362c0519a2305f8c3fc06a4a251ecf64b4a59947758c29d5e561cd64a2-d_2400?region=us" alt="Nataly · San Petersburgo" loading="lazy">
+      <span class="etiqueta mono"><span class="num">05</span> Nataly · San Petersburgo</span>
       <span class="play mono">▶ Ver</span>
     </a>
-    <a class="frame vert" data-cat="reels" href="https://www.instagram.com/hiramanjarrez/" target="_blank" rel="noopener">
-      <img src="https://picsum.photos/seed/reelD/540/960" alt="Placeholder temporal — reel" loading="lazy">
-      <span class="etiqueta mono"><span class="num">R4</span> Detrás de cámara</span>
+    <a class="frame" data-cat="fashion" data-video="https://player.vimeo.com/video/1231907492?h=7f6071ce54&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="https://i.vimeocdn.com/video/2207184275-2cf2960761ee9932dda5896f82bbc1dd523930dc51859b979820a24615990b46-d_2400?region=us" alt="Berlín" loading="lazy">
+      <span class="etiqueta mono"><span class="num">06</span> Berlín</span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame" data-cat="fashion" data-video="https://player.vimeo.com/video/1231905852?h=ddfdd74c5c&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="https://i.vimeocdn.com/video/2207182278-ccbd0876dbd31dd3d905b41c6acf977ce59d3faf40e806eab26e72d9271f4783-d_2400?region=us" alt="Praga" loading="lazy">
+      <span class="etiqueta mono"><span class="num">07</span> Praga</span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame" data-cat="fashion" data-video="https://player.vimeo.com/video/1231905003?h=38f30042f3&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="https://i.vimeocdn.com/video/2207180590-422b26c850054e40b7d185d6d9d74355adcd6608c14aa77ed6553d836d4e91b7-d_2400?region=us" alt="Granada" loading="lazy">
+      <span class="etiqueta mono"><span class="num">08</span> Granada</span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame" data-cat="musical" data-video="https://player.vimeo.com/video/1231734105?h=4d3b23c729&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img style="--zoom:1.4;--origen:50% 30%;clip-path:inset(8.57% 14.29% 20% 14.29%)" src="https://i.vimeocdn.com/video/2206967014-9487399607ba96d3f6f4990fc06de4c405923669e24ff8c5c80524c8f833687f-d_2400?region=us" alt="Polémica Victoria — Nice" loading="lazy">
+      <span class="etiqueta mono"><span class="num">09</span> Polémica Victoria — Nice</span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame" data-cat="musical" data-video="https://player.vimeo.com/video/1231802742?h=a26e3861cc&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="https://i.vimeocdn.com/video/2207179213-6503f009efe92e3b3c626b96e1f76827176a25eac1c1c9cb89a0923fa131a8dd-d_2400?region=us" alt="Banda Punto Medio — Mirarte de frente" loading="lazy">
+      <span class="etiqueta mono"><span class="num">10</span> Banda Punto Medio — Mirarte de frente</span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame" data-cat="musical" data-video="https://player.vimeo.com/video/1231747082?h=fb9bb41c3b&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="https://i.vimeocdn.com/video/2207192989-60484ecb12ba9e591c20933ab326a7ba7fecbef3ad4cc64721c28cc1a2fe4e37-d_2400?region=us" alt="Apolonio — Si tú quieres" loading="lazy">
+      <span class="etiqueta mono"><span class="num">11</span> Apolonio — Si tú quieres</span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame" data-portada-fija="1" data-cat="musical" data-video="https://player.vimeo.com/video/1231737599?h=83bd26e145&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="frames/vc-luis-carlos-y-sigues.jpg" alt="Luis Carlos — Y sigues siendo tú" loading="lazy">
+      <span class="etiqueta mono"><span class="num">12</span> Luis Carlos — Y sigues siendo tú</span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame" data-cat="musical" data-video="https://player.vimeo.com/video/805209083?h=9e7920e5af&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="https://i.vimeocdn.com/video/2207191969-1d479562fd650f7ebf905352047e65b29a954b77ce0e5e0665479ec607658901-d_2400?region=us" alt="Blessed Dog — Mala" loading="lazy">
+      <span class="etiqueta mono"><span class="num">13</span> Blessed Dog — Mala</span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame" data-cat="musical" data-video="https://player.vimeo.com/video/693431980?h=faa01730e7&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="https://i.vimeocdn.com/video/2207192467-55d040397bb6951002fa960f5f260f300cdbd6b87818120f6c017d8364d53cf6-d_2400?region=us" alt="Kmill — La Excusa" loading="lazy">
+      <span class="etiqueta mono"><span class="num">14</span> Kmill — La Excusa</span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame" data-cat="documental" data-video="https://player.vimeo.com/video/1231909849?h=3266d86a6f&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="https://i.vimeocdn.com/video/2207185811-9383da96e615de57ecd8c3e06ec911d0c84d2c0de4eaacdf63304610de132e5a-d_2400?region=us" alt="Jordan — Tráiler documental" loading="lazy">
+      <span class="etiqueta mono"><span class="num">15</span> Jordan — Tráiler documental</span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame" data-cat="documental" data-video="https://player.vimeo.com/video/1231914365?h=6c610fc898&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="https://i.vimeocdn.com/video/2207190984-ad03f5a2ed0cc624e941ef4e1fda798c73055b253df91852c4240f5ee5e6a8f3-d_2400?region=us" alt="Marrakesh — Tráiler documental" loading="lazy">
+      <span class="etiqueta mono"><span class="num">16</span> Marrakesh — Tráiler documental</span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame" data-portada-fija="1" data-cat="documental" data-video="https://player.vimeo.com/video/1231940734?h=7a22d6e30b&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="frames/doc-dia-de-muertos.jpg" alt="Día de Muertos · Janitzio" loading="lazy">
+      <span class="etiqueta mono"><span class="num">17</span> Día de Muertos · Janitzio — Documental · con Leila Kazemi</span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame" data-portada-fija="1" data-cat="documental" data-video="https://player.vimeo.com/video/1231810790?h=e51e46b8aa&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="frames/doc-queso-ancestral.jpg" alt="El Queso Ancestral de Sinaloa" loading="lazy">
+      <span class="etiqueta mono"><span class="num">18</span> El Queso Ancestral de Sinaloa — Documental · DoP</span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame" data-cat="cortos" data-video="https://player.vimeo.com/video/1231903460?h=7463d26e31&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="https://i.vimeocdn.com/video/2207180531-2a7f0b99534cf717f1cc5f032bdaceb4d6b18b0b9654f499a8715290b2e4c822-d_2400?region=us" alt="Desplante — Cortometraje" loading="lazy">
+      <span class="etiqueta mono"><span class="num">19</span> Desplante — Cortometraje · DoP y edición</span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame" data-portada-fija="1" data-cat="cortos" data-video="https://player.vimeo.com/video/1232336082?h=7872deff22&autoplay=1" href="#" target="_blank" rel="noopener">
+      <img src="frames/corto-glasha.jpg" alt="Glasha" loading="lazy">
+      <span class="etiqueta mono"><span class="num">20</span> Glasha — Cortometraje</span>
       <span class="play mono">▶ Ver</span>
     </a>
   </div>
-  <span class="gal-entrega mono">En todos: dirección · cinefotografía · edición · color — del primer plano al corte final</span>
+  <span class="gal-entrega mono">Dirección · producción · cinefotografía · edición · color — del primer plano al corte final, salvo donde se indica</span>
 </section>
 
 <section class="manifiesto wrap" id="manifiesto">
   <span class="eyebrow mono">Manifiesto</span>
   <div class="cols">
     <div>
-      <p>No dirijo a las personas. Las observo desde la distancia, espero el momento en que se olvidan de la cámara, <em>y disparo</em>.</p>
-      <p class="firma" style="font-size:1rem">Vengo del documental, pero mi mirada no vive en un solo formato. Años filmando entre México, Marruecos, Jordania, Suecia y Georgia me enseñaron que lo real no se pone en escena: se encuentra. Foco manual, luz práctica, movimiento sin posar. Esa firma la llevo a cada proyecto — un documental, un video musical, un comercial o un shortfilm.</p>
+      <p>No dirijo gestos: dirijo situaciones. Planteo la escena, me alejo y observo. Cuando se olvidan de la cámara, <em>disparo</em>.</p>
+      <p class="firma" style="font-size:1rem">Vengo del documental, pero mi mirada no vive en un solo formato. Años filmando entre México, Marruecos, Jordania, Suecia y Georgia me enseñaron que lo real no se pone en escena: se encuentra. Foco manual, luz práctica, movimiento sin posar. Esa firma la llevo a cada proyecto — un documental, un video musical, un comercial o un shortfilm. Para las marcas, esa mirada se vuelve dirección visual: el look, el tratamiento y el rodaje bajo un solo criterio.</p>
     </div>
     <!-- ▶ TU RETRATO: foto vertical 4:5 (ej. 1200x1500px), tú con tu equipo, luz natural
          o práctica — que se sienta como un frame tuyo, no como foto de LinkedIn.
          Guárdala como frames/retrato.jpg y descomenta el <img>: -->
-    <figure class="retrato">
-      <!-- <img src="frames/retrato.jpg" alt="Hiram Manjarrez con su cámara"> -->
-      <img src="https://picsum.photos/seed/retrato9/800/1000" alt="Placeholder temporal — reemplazar con tu retrato" loading="lazy">
-      <figcaption class="etiqueta mono">Hiram Manjarrez · DP</figcaption>
+    <figure class="retrato carrusel" role="group" aria-roledescription="carrusel" aria-label="Fotos de rodaje">
+      <div class="car-marco">
+        <div class="car-pista" tabindex="0">
+          <div class="car-slide">
+            <img src="frames/retrato.jpg" alt="Hiram Manjarrez filmando con gimbal en un rodaje" loading="eager">
+            <figcaption class="etiqueta mono">Hiram Manjarrez · DP</figcaption>
+          </div>
+          <div class="car-slide">
+            <img src="frames/retrato-bosque.jpg" alt="Equipo de rodaje filmando a una pareja en un bosque de pinos, con cámara al hombro y una luz en pértiga" loading="lazy">
+            <figcaption class="etiqueta mono sobre-oscuro">Luz, cámara y actores en locación</figcaption>
+          </div>
+          <div class="car-slide">
+            <img src="frames/retrato-camara.jpg" alt="Hiram Manjarrez operando una cámara con gimbal bajo el sol, con un reflector detrás" loading="lazy">
+            <figcaption class="etiqueta mono">Operando cámara en set</figcaption>
+          </div>
+          <div class="car-slide">
+            <img src="frames/retrato-interior.jpg" alt="Cámara Sony en trípode en un set interior con luz azul y morada, y un integrante del equipo junto a ella" loading="lazy">
+            <figcaption class="etiqueta mono sobre-oscuro">Cámara en set interior</figcaption>
+          </div>
+          <div class="car-slide">
+            <img src="frames/retrato-desierto.jpg" alt="Rodaje en el desierto: un camarógrafo con cámara al hombro junto a una persona entrevistada" loading="lazy">
+            <figcaption class="etiqueta mono sobre-oscuro">En locación, desierto</figcaption>
+          </div>
+          <div class="car-slide">
+            <img src="frames/retrato-patio.jpg" alt="Camarógrafo operando una cámara con gimbal en una terraza, junto a una persona sentada a una mesa" loading="lazy">
+            <figcaption class="etiqueta mono sobre-oscuro">Operando en exteriores</figcaption>
+          </div>
+          <div class="car-slide">
+            <img src="frames/retrato-musicos.jpg" alt="Un integrante del equipo revisa notas junto a una cámara en trípode mientras músicos tocan guitarra a la orilla de un lago" loading="lazy">
+            <figcaption class="etiqueta mono sobre-oscuro">Rodaje con músicos</figcaption>
+          </div>
+        </div>
+        <span class="car-cuenta mono" aria-hidden="true">1/7</span>
+        <button class="car-flecha prev" type="button" aria-label="Foto anterior" hidden>&#8249;</button>
+        <button class="car-flecha next" type="button" aria-label="Foto siguiente">&#8250;</button>
+      </div>
+      <div class="car-puntos" aria-hidden="true"><span class="activo"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
     </figure>
   </div>
 </section>
@@ -508,67 +766,56 @@ footer{
     <div class="terr-card">
       <div class="mini">
         <!-- <img src="frames/terr-mexico.jpg" alt="Fotograma filmado en México"> -->
-        <img src="https://picsum.photos/seed/mex/960/402" alt="Placeholder temporal — México" loading="lazy">
+        <img src="frames/terr-mexico.jpg" alt="Fotograma filmado en Janitzio, México" loading="lazy">
       </div>
       <div class="info">
         <span class="lugar">México</span>
         <span class="detalle">Documental en Sinaloa y Janitzio · comerciales, videos musicales y televisión</span>
-        <span class="tipo mono">Doc · Música · Comercial</span>
+        <span class="tipo mono">Doc · Música · Brands</span>
       </div>
     </div>
     <div class="terr-card">
       <div class="mini">
         <!-- <img src="frames/terr-marruecos.jpg" alt="Fotograma filmado en Marruecos"> -->
-        <img src="https://picsum.photos/seed/marruecos/960/402" alt="Placeholder temporal — Marruecos" loading="lazy">
+        <img src="frames/terr-marruecos.jpg" alt="Fotograma filmado en Marruecos" loading="lazy">
       </div>
       <div class="info">
         <span class="lugar">Marruecos</span>
-        <span class="detalle">Producción audiovisual en locación</span>
-        <span class="tipo mono">Comercial</span>
+        <span class="detalle">Serie documental TOS · Marrakesh y el desierto</span>
+        <span class="tipo mono">Documental</span>
       </div>
     </div>
     <div class="terr-card">
       <div class="mini">
         <!-- <img src="frames/terr-jordania.jpg" alt="Fotograma filmado en Jordania"> -->
-        <img src="https://picsum.photos/seed/jordania/960/402" alt="Placeholder temporal — Jordania" loading="lazy">
+        <img src="frames/terr-jordania.jpg" alt="Fotograma filmado en Jordania" loading="lazy">
       </div>
       <div class="info">
         <span class="lugar">Jordania</span>
-        <span class="detalle">Producción audiovisual en locación</span>
-        <span class="tipo mono">Comercial</span>
-      </div>
-    </div>
-    <div class="terr-card">
-      <div class="mini">
-        <!-- <img src="frames/terr-georgia.jpg" alt="Fotograma filmado en Georgia"> -->
-        <img src="https://picsum.photos/seed/georgia/960/402" alt="Placeholder temporal — Georgia" loading="lazy">
-      </div>
-      <div class="info">
-        <span class="lugar">Georgia</span>
-        <span class="detalle">Proyecto documental independiente en desarrollo</span>
+        <span class="detalle">Serie documental TOS · Wadi Rum y las comunidades beduinas</span>
         <span class="tipo mono">Documental</span>
       </div>
     </div>
     <div class="terr-card">
       <div class="mini">
         <!-- <img src="frames/terr-suecia.jpg" alt="Fotograma filmado en Suecia"> -->
-        <img src="https://picsum.photos/seed/suecia/960/402" alt="Placeholder temporal — Suecia" loading="lazy">
+        <img src="frames/terr-chequia.jpg" alt="Fotograma filmado en Praga, República Checa" loading="lazy">
       </div>
       <div class="info">
-        <span class="lugar">Suecia</span>
-        <span class="detalle">Producción audiovisual en locación</span>
-        <span class="tipo mono">Comercial</span>
+        <span class="lugar">República Checa</span>
+        <span class="detalle">Fashion film en Praga</span>
+        <span class="tipo mono">Fashion</span>
       </div>
     </div>
     <div class="terr-card">
       <div class="mini">
         <!-- <img src="frames/terr-eau.jpg" alt="Fotograma filmado en Emiratos Árabes"> -->
-        <img src="https://picsum.photos/seed/dubai/960/402" alt="Placeholder temporal — EAU" loading="lazy">
+        <img src="frames/terr-rusia.jpg" alt="Fotograma filmado en San Petersburgo, Rusia" loading="lazy">
       </div>
       <div class="info">
-        <span class="lugar">EAU</span>
-        <span class="detalle">Base actual · disponible para producción en Dubái y la región</span>
-        <span class="tipo mono">Base · Disponible</span>
+        <span class="lugar">Rusia</span>
+        <span class="detalle">Fashion film en San Petersburgo</span>
+        <span class="tipo mono">Fashion</span>
       </div>
     </div>
   </div>
@@ -579,40 +826,44 @@ footer{
   <h2>Cómo trabajo</h2>
   <div class="pasos">
     <div class="paso">
+      <figure class="paso-foto"><img src="frames/proceso-observo.jpg" alt="Un director marca con las manos el encuadre y la posición de la escena dentro de una cabaña de ladrillo y madera, antes de grabar" loading="lazy"></figure>
       <span class="tc-num mono">TC 01:00:00</span>
       <h3>Observo</h3>
-      <p>Antes de sacar la cámara, entiendo el lugar, la luz y a las personas. La preproducción es investigación, no storyboard: busco lo que ya existe, no lo que quiero imponer.</p>
+      <p>Antes de sacar la cámara, hago el diagnóstico visual: entiendo la marca, el lugar, la luz y a las personas, y reviso qué tendencias del momento le quedan y cuáles no. Entrego un tratamiento visual: look, referencias y cómo se dirigiría cada escena.</p>
     </div>
     <div class="paso">
+      <figure class="paso-foto"><img src="frames/proceso-espero.jpg" alt="Camarógrafo sentado en un bosque de pinos, filmando a distancia" loading="lazy"></figure>
       <span class="tc-num mono">TC 02:00:00</span>
       <h3>Espero</h3>
-      <p>Filmo desde la distancia, en foco manual y con luz práctica. No pido que repitan, no poso a nadie. Espero el instante en que la escena se vuelve verdadera.</p>
+      <p>Dirijo en set sin invadir: explico la escena, me alejo y dejo que se repita, sin avisar cuándo grabo. Foco manual y luz práctica. Espero el instante en que la escena se vuelve verdadera y elijo esa toma.</p>
     </div>
     <div class="paso">
+      <figure class="paso-foto"><img src="frames/proceso-disparo.jpg" alt="Monitor de cámara y mano en el rig durante un rodaje" loading="lazy"></figure>
       <span class="tc-num mono">TC 03:00:00</span>
       <h3>Disparo</h3>
-      <p>Del rodaje al corte final: edito con la misma lógica con la que filmo. Ritmo, silencio y textura. Entrego piezas que se sienten vividas, no fabricadas.</p>
+      <p>Del rodaje a la entrega: edito y corrijo color con la misma lógica con la que filmo. Ritmo, silencio y textura. Entrego piezas que se sienten vividas, no fabricadas, listas para cada plataforma.</p>
     </div>
   </div>
 
+  <p class="alcance mono">Dirección visual y producción creativa, de la locación y el casting al corte final. La estrategia, el calendario de contenido y la publicación se quedan con tu equipo de marketing.</p>
+
   <div class="noseve">
     <h3>Lo que no se ve</h3>
-    <p class="nota">Grabar es la mitad del trabajo. Esto es lo que hay detrás de un documental como <em style="color:var(--papel)">Día de Muertos — Janitzio</em>:</p>
+    <p class="nota">Grabar es la mitad del trabajo. Esto es lo que hay detrás de un documental como <em style="color:var(--papel)">Día de Muertos — Janitzio</em>, codirigido con Leila Kazemi:</p>
     <!-- ▶ PON TUS CIFRAS REALES de Janitzio (o del documental que elijas como caso).
          Días de rodaje, horas de material bruto y duración del corte final.
          Regla: solo números que puedas defender si el cliente pregunta. -->
     <div class="cifras">
       <div class="cifra"><span class="valor">3 días</span><span class="label mono">de rodaje en comunidad</span></div>
       <div class="cifra"><span class="valor">4:30 h</span><span class="label mono">de material grabado</span></div>
-      <div class="cifra"><span class="valor">12 min</span><span class="label mono">que llegan a la pantalla</span></div>
+      <div class="cifra"><span class="valor">22 min</span><span class="label mono">que llegan a la pantalla</span></div>
     </div>
-    <div class="timeline" role="img" aria-label="Representación de una línea de tiempo de edición con pistas de video y audio">
-      <div class="pista video"><span class="pnombre">V3</span><div class="clips"><i style="width:2%"></i><i style="width:5%"></i><i style="width:3%"></i><i style="width:2%"></i><i class="sel" style="width:4%"></i><i style="width:3%"></i><i style="width:6%"></i><i style="width:2%"></i></div></div>
-      <div class="pista video"><span class="pnombre">V2</span><div class="clips"><i style="width:4%"></i><i style="width:7%"></i><i style="width:3%"></i><i class="sel" style="width:9%"></i><i style="width:5%"></i><i style="width:2%"></i><i style="width:6%"></i><i style="width:4%"></i><i style="width:8%"></i><i style="width:3%"></i><i style="width:5%"></i><i style="width:2%"></i></div></div>
-      <div class="pista video"><span class="pnombre">V1</span><div class="clips"><i style="width:8%"></i><i style="width:5%"></i><i class="sel" style="width:4%"></i><i style="width:10%"></i><i style="width:3%"></i><i style="width:7%"></i><i style="width:5%"></i><i style="width:2%"></i><i style="width:9%"></i><i style="width:6%"></i><i style="width:4%"></i><i style="width:3%"></i><i style="width:5%"></i></div></div>
-      <div class="pista audio"><span class="pnombre">A1</span><div class="clips"><i style="width:14%"></i><i style="width:9%"></i><i style="width:18%"></i><i style="width:7%"></i><i style="width:12%"></i><i style="width:10%"></i><i style="width:6%"></i></div></div>
-      <div class="pista audio"><span class="pnombre">A2</span><div class="clips"><i style="width:6%"></i><i style="width:11%"></i><i style="width:5%"></i><i style="width:9%"></i><i style="width:14%"></i><i style="width:7%"></i><i style="width:10%"></i><i style="width:8%"></i></div></div>
-      <div class="pista audio"><span class="pnombre">MX</span><div class="clips"><i style="width:38%"></i><i style="width:29%"></i><i style="width:22%"></i></div></div>
+    <div class="tl-real" id="tlReal" role="img" aria-label="Línea de tiempo real de un proyecto en DaVinci Resolve, con varias pistas de video y audio">
+      <div class="tl-in">
+        <img src="frames/timeline-real.jpg" alt="Línea de tiempo real en DaVinci Resolve" width="1919" height="601" loading="lazy">
+        <span class="tc" id="tlTc">00:00:00:00</span>
+        <span class="cabezal" id="tlCab"></span>
+      </div>
     </div>
   </div>
 
@@ -625,26 +876,52 @@ footer{
          2. Cambia los src de las dos imágenes de abajo.
          3. Quita la clase "simulado" de la primera imagen (hoy finge el log con CSS). -->
     <div class="compara" id="compara">
-      <img class="c-antes simulado" src="https://picsum.photos/seed/grade/1200/502" alt="Fotograma sin corrección de color">
-      <img class="c-despues" src="https://picsum.photos/seed/grade/1200/502" alt="Fotograma con corrección de color final">
+      <img class="c-antes" src="frames/color-antes.jpg" alt="Fotograma sin corrección de color">
+      <img class="c-despues" src="frames/color-despues.jpg" alt="Fotograma con corrección de color final">
       <div class="c-linea" aria-hidden="true"></div>
       <span class="tag izq mono">Log — cámara</span>
       <span class="tag der mono">Graded — final</span>
-      <input type="range" min="0" max="100" value="50" step="0.1" aria-label="Comparar antes y después del color">
+      <input type="range" min="0" max="100" value="68" step="0.1" aria-label="Comparar antes y después del color">
     </div>
+  </div>
+</section>
+
+<section class="ofertas wrap" id="servicios">
+  <span class="eyebrow mono">Servicios</span>
+  <h2>Qué puedes contratar</h2>
+  <p class="lead">Todos los proyectos empiezan con dirección visual: el look, el tratamiento y la lista de planos.</p>
+  <div class="ofertas-grid">
+    <article class="oferta">
+      <span class="num mono">01</span>
+      <h3>Brand film</h3>
+      <p>Una pieza corta, de uno a dos minutos, que cuenta la historia de tu marca, tu espacio o tu producto, con sensación de cine y no de anuncio.</p>
+      <span class="incluye mono">Dirección · producción · fotografía · edición · color</span>
+    </article>
+    <article class="oferta">
+      <span class="num mono">02</span>
+      <h3>Día de contenido</h3>
+      <p>Un día de rodaje, varias piezas verticales pensadas para Reels e Historias, con intención y no solo con efectos.</p>
+      <span class="incluye mono">Producción · rodaje · edición · formatos para cada plataforma</span>
+    </article>
+    <article class="oferta">
+      <span class="num mono">03</span>
+      <h3>Fashion y música</h3>
+      <p>Fashion films, videoclips y piezas documentales para diseñadores, artistas y sellos. Aquí la mirada es el brief.</p>
+      <span class="incluye mono">Dirección · producción · fotografía · edición · color</span>
+    </article>
   </div>
 </section>
 
 <section class="contacto wrap" id="contacto">
   <span class="eyebrow mono">Contacto</span>
-  <h2>¿Tienes una historia que merece ser filmada?</h2>
+  <h2>¿Tu marca merece verse así?</h2>
   <p class="cotiza">Cada historia es distinta. Cada proyecto se cotiza a su medida.</p>
   <a class="mail" href="mailto:hola@hiramanjarrez.com">hola@hiramanjarrez.com</a>
   <br>
   <!-- ▶ TU WHATSAPP: reemplaza 0000000000 por tu número con código de país,
        sin +, sin espacios. Ej. México: 52166XXXXXXXX · EAU: 9715XXXXXXXX -->
   <div class="cta-row">
-  <a class="btn-wa" href="https://wa.me/0000000000?text=Hola%20Hiram%2C%20vi%20tu%20p%C3%A1gina%20y%20me%20interesa%20hablar%20de%20un%20proyecto." target="_blank" rel="noopener">
+  <a class="btn-wa oculto-temp" href="https://wa.me/0000000000?text=Hola%20Hiram%2C%20vi%20tu%20p%C3%A1gina%20y%20me%20interesa%20hablar%20de%20un%20proyecto." target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.9-1.4A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a3 3 0 0 0-1 2.2c0 1.3 1 2.6 1.1 2.8.1.2 2 3 4.8 4.2 2.8 1.2 2.8.8 3.3.8.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4Z"/></svg>
     Escríbeme por WhatsApp
   </a>
@@ -656,6 +933,12 @@ footer{
 </section>
 
 </main>
+
+<div class="aviso-obra mono" id="avisoObra" role="status">
+  <span class="aviso-cinta" aria-hidden="true"></span>
+  <span class="aviso-txt">Sitio en construcción · pronto habrá más trabajo y detalles</span>
+  <button type="button" class="aviso-x" id="cerrarAviso" aria-label="Cerrar aviso" title="Cerrar">&times;</button>
+</div>
 
 <footer class="mono">
   <span>© 2026 Hiram Manjarrez</span>
@@ -678,19 +961,26 @@ footer{
       abrir=document.getElementById('abrirReel'),
       cerrar=document.getElementById('cerrarReel'),
       vid=document.getElementById('reelVideo');
+  var disparador=abrir; /* elemento que abrió el reproductor, para devolverle el foco sin mover la página */
+  function devuelveFoco(){
+    var el=disparador||abrir; disparador=abrir;
+    try{el.focus({preventScroll:true});}catch(e){}
+  }
   abrir.addEventListener('click',function(){
+    disparador=abrir;
     box.classList.add('abierto');
     if(vid){vid.currentTime=0;vid.play().catch(function(){});}
-    cerrar.focus();
+    try{cerrar.focus({preventScroll:true});}catch(e){}
   });
   function cerrarBox(){
     box.classList.remove('abierto');
     if(vid){vid.pause();vid.style.display='';}
     var ifr=box.querySelector('iframe');
     if(ifr)ifr.remove();
-    abrir.focus();
+    devuelveFoco();
   }
-  function abrirEmbed(url){
+  function abrirEmbed(url,vertical){
+    box.classList.toggle('vertical',!!vertical);
     if(vid)vid.style.display='none';
     var viejo=box.querySelector('iframe');
     if(viejo)viejo.remove();
@@ -701,21 +991,173 @@ footer{
     f.setAttribute('title','Video de Hiram Manjarrez');
     box.appendChild(f);
     box.classList.add('abierto');
-    cerrar.focus();
+    try{cerrar.focus({preventScroll:true});}catch(e){}
   }
   cerrar.addEventListener('click',cerrarBox);
   box.addEventListener('click',function(e){if(e.target===box)cerrarBox();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&box.classList.contains('abierto'))cerrarBox();});
 
   /* Videos de la galería en el lightbox (los reels 9:16 van a Instagram) */
-  document.querySelectorAll('.galeria .frame:not(.vert)').forEach(function(fr){
+  document.querySelectorAll('.galeria .frame').forEach(function(fr){
     fr.addEventListener('click',function(e){
       var v=fr.dataset.video;
-      if(!v)return; /* sin video conectado aún: se respeta el href */
       e.preventDefault();
-      abrirEmbed(v);
+      if(!v)return; /* sin video conectado aún: no abre nada */
+      disparador=fr;
+      abrirEmbed(v,fr.classList.contains('vert'));
     });
   });
+
+
+  /* Miniaturas (y títulos de los verticales) automáticos desde Vimeo.
+     Si cambias la miniatura o el título en Vimeo, la web se actualiza sola. */
+  document.querySelectorAll('.galeria .frame[data-video*="player.vimeo.com"]:not([data-portada-fija])').forEach(function(fr){
+    var m=fr.dataset.video.match(/video\/(\d+)(?:\?h=([0-9a-f]+))?/);
+    if(!m)return;
+    var url='https://vimeo.com/'+m[1]+(m[2]?'/'+m[2]:'');
+    fetch('https://vimeo.com/api/oembed.json?width=1920&url='+encodeURIComponent(url))
+      .then(function(r){return r.ok?r.json():null;})
+      .then(function(d){
+        if(!d)return;
+        if(d.thumbnail_url){
+          var img=fr.querySelector('img');
+          if(!img){
+            img=document.createElement('img');img.loading='lazy';
+            var ph=fr.querySelector('.placeholder-txt');
+            if(ph)ph.replaceWith(img);else fr.prepend(img);
+          }
+          img.alt=d.title||'';
+          img.src=d.thumbnail_url.replace(/_\d+x\d+/,'_1920');
+        }
+        var t=fr.querySelector('.titulo-auto');
+        if(fr.dataset.autoTitulo&&t&&d.title)t.textContent=d.title;
+      })
+      .catch(function(){});
+  });
+
+
+  /* Cabezal que recorre el timeline real */
+  (function(){
+    var cab=document.getElementById('tlCab'),tc=document.getElementById('tlTc');
+    if(!cab||!tc)return;
+    var ini=13.549,fin=97.290,dur=16000,seg=1320,fps=24;
+    function pad(n){return (n<10?'0':'')+n;}
+    function dibuja(t){
+      cab.style.left=(ini+(fin-ini)*t)+'%';
+      var f=Math.floor(t*seg*fps),ss=Math.floor(f/fps);
+      tc.textContent='00:'+pad(Math.floor(ss/60))+':'+pad(ss%60)+':'+pad(f%fps);
+    }
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){dibuja(.42);return;}
+    var t0=null;
+    function paso(now){if(t0===null)t0=now;dibuja(((now-t0)%dur)/dur);requestAnimationFrame(paso);}
+    requestAnimationFrame(paso);
+  })();
+
+
+  /* Carrusel de fotos del perfil (estilo Instagram) */
+  (function(){
+    var car=document.querySelector('.carrusel'); if(!car)return;
+    var pista=car.querySelector('.car-pista'),n=pista.children.length,
+        puntos=car.querySelectorAll('.car-puntos span'),cuenta=car.querySelector('.car-cuenta'),
+        prev=car.querySelector('.car-flecha.prev'),next=car.querySelector('.car-flecha.next'),
+        puntosBox=car.querySelector('.car-puntos'),
+        reducir=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(n<2){cuenta.hidden=true;prev.hidden=true;next.hidden=true;puntosBox.hidden=true;return;}
+    function idx(){return Math.min(n-1,Math.max(0,Math.round(pista.scrollLeft/pista.clientWidth)));}
+    function actualiza(){
+      var i=idx();
+      puntos.forEach(function(p,k){p.classList.toggle('activo',k===i);});
+      cuenta.textContent=(i+1)+'/'+n; prev.hidden=(i===0); next.hidden=(i===n-1);
+    }
+    function ir(k){pista.scrollTo({left:Math.min(n-1,Math.max(0,k))*pista.clientWidth,behavior:reducir?'auto':'smooth'});}
+    prev.addEventListener('click',function(){ir(idx()-1);});
+    next.addEventListener('click',function(){ir(idx()+1);});
+    pista.addEventListener('scroll',function(){window.requestAnimationFrame(actualiza);},{passive:true});
+    pista.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'){e.preventDefault();ir(idx()+1);}
+      if(e.key==='ArrowLeft'){e.preventDefault();ir(idx()-1);}
+    });
+    window.addEventListener('resize',actualiza); actualiza();
+  })();
+
+
+  /* Indicadores de deslizar en celular: texto "Desliza →", puntos que avanzan y un empujoncito inicial */
+  (function(){
+    var movil=window.matchMedia('(max-width:760px)'),
+        reducir=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+        cfgs=[{sel:'.galeria',item:'.frame:not(.oculto)'},{sel:'.terr-grid',item:'.terr-card'},
+              {sel:'.proceso .pasos',item:'.paso'},{sel:'.ofertas-grid',item:'.oferta'}],
+        ctls=[];
+    function crea(cfg){
+      var row=document.querySelector(cfg.sel); if(!row)return;
+      var hint=document.createElement('p'); hint.className='desliza mono'; hint.setAttribute('aria-hidden','true');
+      hint.innerHTML='<span>Desliza</span><i>&rarr;</i>';
+      row.parentNode.insertBefore(hint,row);
+      var dots=document.createElement('div'); dots.className='fila-puntos'; dots.setAttribute('aria-hidden','true');
+      row.parentNode.insertBefore(dots,row.nextSibling);
+      var items=[],visto=false;
+      function actualiza(){
+        if(!items.length)return;
+        var r=row.getBoundingClientRect(),pad=parseFloat(getComputedStyle(row).paddingLeft)||0,best=0,min=1e9;
+        items.forEach(function(it,i){var d=Math.abs(it.getBoundingClientRect().left-r.left-pad);if(d<min){min=d;best=i;}});
+        if(row.scrollLeft+row.clientWidth>=row.scrollWidth-4)best=items.length-1;
+        for(var k=0;k<dots.children.length;k++)dots.children[k].classList.toggle('activo',k===best);
+        if(row.scrollLeft>8&&!visto){visto=true;hint.classList.add('visto');}
+      }
+      function rebuild(){
+        items=Array.prototype.slice.call(row.querySelectorAll(cfg.item));
+        dots.innerHTML='';
+        var desborda=row.scrollWidth>row.clientWidth+4&&items.length>1;
+        hint.classList.toggle('sin',!desborda); dots.classList.toggle('sin',!desborda);
+        items.forEach(function(){dots.appendChild(document.createElement('span'));});
+        actualiza();
+      }
+      row.addEventListener('scroll',function(){window.requestAnimationFrame(actualiza);},{passive:true});
+      window.addEventListener('resize',rebuild);
+      rebuild();
+      ctls.push({row:row,rebuild:rebuild});
+    }
+    cfgs.forEach(crea);
+    /* las pestañas de la galería se aplican después: se recalculan al terminar de cargar */
+    setTimeout(function(){ctls.forEach(function(x){x.rebuild();});},80);
+    window.addEventListener('load',function(){ctls.forEach(function(x){x.rebuild();});});
+    /* al cambiar de pestaña de la galería cambia el número de piezas */
+    document.querySelectorAll('.chip').forEach(function(c){
+      c.addEventListener('click',function(){setTimeout(function(){ctls.forEach(function(x){x.rebuild();});},40);});
+    });
+    /* empujoncito: la primera vez que una fila aparece, se mueve un poco y regresa */
+    function nudge(row){
+      if(reducir||!movil.matches)return;
+      if(row.scrollWidth<=row.clientWidth+4||row.scrollLeft>2)return;
+      var parar=false,snap=row.style.scrollSnapType,t0=null,dur=1000,amp=Math.min(64,row.clientWidth*.16);
+      row.addEventListener('touchstart',function(){parar=true;},{once:true,passive:true});
+      row.style.scrollSnapType='none';
+      function paso(now){
+        if(t0===null)t0=now;
+        var k=Math.min(1,(now-t0)/dur);
+        if(parar){row.style.scrollSnapType=snap;return;}
+        row.scrollLeft=amp*Math.sin(k*Math.PI);
+        if(k<1)requestAnimationFrame(paso);else{row.scrollLeft=0;row.style.scrollSnapType=snap;}
+      }
+      requestAnimationFrame(paso);
+    }
+    if('IntersectionObserver' in window){
+      var obs=new IntersectionObserver(function(es){
+        es.forEach(function(e){if(e.isIntersecting){obs.unobserve(e.target);setTimeout(function(){nudge(e.target);},450);}});
+      },{threshold:.6});
+      ctls.forEach(function(x){obs.observe(x.row);});
+      var pf=document.querySelector('.car-pista'); if(pf)obs.observe(pf);
+    }
+  })();
+
+
+  /* Aviso "sitio en construcción": se puede cerrar y vuelve a aparecer al recargar */
+  (function(){
+    var av=document.getElementById('avisoObra'),x=document.getElementById('cerrarAviso');
+    if(!av)return;
+    document.body.classList.add('con-aviso');
+    if(x)x.addEventListener('click',function(){av.classList.add('cerrado');document.body.classList.remove('con-aviso');});
+  })();
 
   /* Filtros de la galería */
   var chips=document.querySelectorAll('.chip'),
@@ -726,6 +1168,7 @@ footer{
       fr.classList.toggle('oculto', f!=='todo' && fr.dataset.cat!==f);
     });
     if(galeria)galeria.classList.toggle('vertical', f==='reels');
+    if(galeria)galeria.scrollLeft=0;
   }
   chips.forEach(function(chip){
     chip.addEventListener('click',function(){
@@ -740,21 +1183,96 @@ footer{
   /* Comparador de color */
   var comp=document.getElementById('compara');
   if(comp){
-    comp.querySelector('input[type=range]').addEventListener('input',function(){
-      comp.style.setProperty('--pos', this.value + '%');
-    });
+    var rango=comp.querySelector('input[type=range]'),
+        tIzq=comp.querySelector('.tag.izq'),tDer=comp.querySelector('.tag.der');
+    function ponPos(v){
+      comp.style.setProperty('--pos', v + '%');
+      /* Cada etiqueta se oculta cuando su lado queda casi cubierto */
+      tIzq.style.opacity = v < 18 ? 0 : 1;
+      tDer.style.opacity = v > 82 ? 0 : 1;
+    }
+    rango.addEventListener('input',function(){ ponPos(+this.value); tocado=true; });
+    ponPos(+rango.value);
+    /* Pista de uso: la primera vez que la sección aparece en pantalla,
+       la línea se mueve sola un poco para mostrar que se puede arrastrar. */
+    var tocado=false;
+    if('IntersectionObserver' in window && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)){
+      var obs=new IntersectionObserver(function(ent){
+        if(!ent[0].isIntersecting) return; obs.disconnect();
+        var t0=null;
+        function anima(now){
+          if(tocado) return;
+          if(t0===null) t0=now;
+          var k=(now-t0)/1800; if(k>1) k=1;
+          var v=68-12*Math.sin(k*Math.PI*2)*(1-k*0.15);
+          if(k>=1) v=68;
+          rango.value=v; ponPos(v);
+          if(k<1) requestAnimationFrame(anima);
+        }
+        setTimeout(function(){ requestAnimationFrame(anima); },400);
+      },{threshold:.6});
+      obs.observe(comp);
+    }
   }
 
   /* ===== Idioma ES/EN =====
      Para editar la versión en inglés, cambia los textos de la derecha en este
      diccionario. "Observo. Espero. Disparo." no se traduce: es la firma. */
   var dicc={
+    "Sitio en construcción · pronto habrá más trabajo y detalles":"Site under construction · more work and details coming soon",
+    "Desliza":"Swipe",
+    "Servicios":"Services",
+    "Qué puedes contratar":"What you can hire",
+    "Todos los proyectos empiezan con dirección visual: el look, el tratamiento y la lista de planos.":"Every project starts with visual direction: the look, the treatment and the shot list.",
+    "Brand film":"Brand film",
+    "Una pieza corta, de uno a dos minutos, que cuenta la historia de tu marca, tu espacio o tu producto, con sensación de cine y no de anuncio.":"A short piece, one to two minutes, that tells the story of your brand, space or product, with the feel of cinema, not an ad.",
+    "Dirección · producción · fotografía · edición · color":"Direction · production · cinematography · editing · color",
+    "Día de contenido":"Content day",
+    "Un día de rodaje, varias piezas verticales pensadas para Reels e Historias, con intención y no solo con efectos.":"One shoot day, several vertical pieces made for Reels and Stories, with intent and not just effects.",
+    "Producción · rodaje · edición · formatos para cada plataforma":"Production · shoot · edit · formats for each platform",
+    "Fashion y música":"Fashion and music",
+    "Fashion films, videoclips y piezas documentales para diseñadores, artistas y sellos. Aquí la mirada es el brief.":"Fashion films, music videos and documentary pieces for designers, artists and labels. Here the eye is the brief.",
+    "Operando en exteriores":"Operating outdoors",
+    "Rodaje con músicos":"Shooting with musicians",
+    "Luz, cámara y actores en locación":"Light, camera and actors on location",
+    "Operando cámara en set":"Operating camera on set",
+    "Cámara en set interior":"Camera on an interior set",
+    "En locación, desierto":"On location, desert",
+    "Dirección visual para marcas: look, tratamiento y rodaje":"Visual direction for brands: look, treatment and shoot",
+    "Dirección visual y producción creativa, de la locación y el casting al corte final. La estrategia, el calendario de contenido y la publicación se quedan con tu equipo de marketing.":"Visual direction and creative production, from locations and casting to the final cut. Strategy, content calendar and publishing stay with your marketing team.",
+    "Foto pendiente":"Photo coming soon",
+    ", codirigido con Leila Kazemi:":", co-directed with Leila Kazemi:",
+    "Línea de tiempo real en DaVinci Resolve":"Real editing timeline in DaVinci Resolve",
+    "República Checa":"Czech Republic",
+    "Fashion film en Praga":"Fashion film in Prague",
+    "Rusia":"Russia",
+    "Fashion film en San Petersburgo":"Fashion film in Saint Petersburg",
+    "Serie documental TOS · Wadi Rum y las comunidades beduinas":"TOS documentary series · Wadi Rum and Bedouin communities",
+    "Serie documental TOS · Marrakesh y el desierto":"TOS documentary series · Marrakesh and the desert",
+    "Documental":"Documentary",
+    "Salva — Reparación de iPhone":"Salva — iPhone Repair",
+    "Jordan — Tráiler documental":"Jordan — Documentary trailer",
+    "Marrakesh — Tráiler documental":"Marrakesh — Documentary trailer",
+    "Día de Muertos · Janitzio — Documental · con Leila Kazemi":"Day of the Dead · Janitzio — Documentary · with Leila Kazemi",
+    "El Queso Ancestral de Sinaloa — Documental · DoP":"The Ancestral Cheese of Sinaloa — Documentary · DoP",
+    "Nataly · San Petersburgo":"Nataly · Saint Petersburg",
+    "Berlín":"Berlin",
+    "Praga":"Prague",
+    "Muebles Valdés Baluarte":"Valdés Baluarte Furniture",
+    "Desplante — Cortometraje · DoP y edición":"Desplante — Short film · DoP & editing",
+    "Glasha — Cortometraje":"Glasha — Short film",
+    "Sunday — Flameado":"Sunday — Flambé",
+    "Cortometrajes":"Short films",
+    "Vertical / Reels":"Vertical / Reels",
+    "Video por conectar":"Video coming soon",
     "Trabajo":"Work",
     "Manifiesto":"Manifesto",
     "Proceso":"Process",
     "Contacto":"Contact",
     "Disponible para proyectos":"Available for projects",
-    "Base en Dubái, EAU · Worldwide":"Based in Dubai, UAE · Worldwide",
+    "Base en":"Based in",
+    "Dubái":"Dubai",
+    ", EAU · Worldwide":", UAE · Worldwide",
     "Worldwide · Base en Dubái":"Worldwide · Based in Dubai",
     "Ver reel — 60 seg":"Watch reel — 60 sec",
     "Trabajo seleccionado":"Selected work",
@@ -763,17 +1281,16 @@ footer{
     "Documental":"Documentary",
     "Videos musicales":"Music videos",
     "Comercial":"Commercial",
-    "Día de Muertos · Janitzio — Documental":"Day of the Dead · Janitzio — Documentary",
+    "Día de Muertos · Janitzio — Documental · con Leila Kazemi":"Day of the Dead · Janitzio — Documentary · with Leila Kazemi",
     "Video musical":"Music video",
     "Fashion film / Modelos":"Fashion film / Models",
-    "Comercial / Aston Martin":"Commercial / Aston Martin",
     "Sinaloa — Documental":"Sinaloa — Documentary",
     "Video musical / Fashion film":"Music video / Fashion film",
     "▶ Ver":"▶ Watch",
-    "En todos: dirección · cinefotografía · edición · color — del primer plano al corte final":"In all of them: direction · cinematography · editing · color — from the first shot to the final cut",
-    "No dirijo a las personas. Las observo desde la distancia, espero el momento en que se olvidan de la cámara,":"I don't direct people. I observe them from a distance, I wait for the moment they forget the camera,",
-    "y disparo":"and I shoot",
-    "Vengo del documental, pero mi mirada no vive en un solo formato. Años filmando entre México, Marruecos, Jordania, Suecia y Georgia me enseñaron que lo real no se pone en escena: se encuentra. Foco manual, luz práctica, movimiento sin posar. Esa firma la llevo a cada proyecto — un documental, un video musical, un comercial o un shortfilm.":"I come from documentary, but my eye doesn't live in a single format. Years of filming across Mexico, Morocco, Jordan, Sweden and Georgia taught me that the real can't be staged: it has to be found. Manual focus, practical light, unposed movement. I carry that signature into every project — a documentary, a music video, a commercial or a short film.",
+    "Dirección · producción · cinefotografía · edición · color — del primer plano al corte final, salvo donde se indica":"Direction · production · cinematography · editing · color — from the first shot to the final cut, unless noted",
+    "No dirijo gestos: dirijo situaciones. Planteo la escena, me alejo y observo. Cuando se olvidan de la cámara,":"I don't direct gestures. I direct situations. I set the scene, step back and watch. When they forget the camera,",
+    "disparo":"I shoot",
+    "Vengo del documental, pero mi mirada no vive en un solo formato. Años filmando entre México, Marruecos, Jordania, Suecia y Georgia me enseñaron que lo real no se pone en escena: se encuentra. Foco manual, luz práctica, movimiento sin posar. Esa firma la llevo a cada proyecto — un documental, un video musical, un comercial o un shortfilm. Para las marcas, esa mirada se vuelve dirección visual: el look, el tratamiento y el rodaje bajo un solo criterio.":"I come from documentary, but my eye doesn't live in a single format. Years of filming across Mexico, Morocco, Jordan, Sweden and Georgia taught me that the real can't be staged: it has to be found. Manual focus, practical light, unposed movement. I carry that signature into every project — a documentary, a music video, a commercial or a short film. For brands, that eye becomes visual direction: the look, the treatment and the shoot under a single vision.",
     "Territorios":"Territories",
     "Dónde he filmado":"Where I've filmed",
     "México":"Mexico",
@@ -782,7 +1299,7 @@ footer{
     "Suecia":"Sweden",
     "EAU":"UAE",
     "Documental en Sinaloa y Janitzio · comerciales, videos musicales y televisión":"Documentary in Sinaloa and Janitzio · commercials, music videos and television",
-    "Doc · Música · Comercial":"Doc · Music · Commercial",
+    "Doc · Música · Brands":"Doc · Music · Brands",
     "Producción audiovisual en locación":"Audiovisual production on location",
     "Proyecto documental independiente en desarrollo":"Independent documentary project in development",
     "Base actual · disponible para producción en Dubái y la región":"Current base · available for production in Dubai and the region",
@@ -791,9 +1308,9 @@ footer{
     "Observo":"I observe",
     "Espero":"I wait",
     "Disparo":"I shoot",
-    "Antes de sacar la cámara, entiendo el lugar, la luz y a las personas. La preproducción es investigación, no storyboard: busco lo que ya existe, no lo que quiero imponer.":"Before taking out the camera, I get to know the place, the light and the people. Pre-production is research, not storyboarding: I look for what already exists, not what I want to impose.",
-    "Filmo desde la distancia, en foco manual y con luz práctica. No pido que repitan, no poso a nadie. Espero el instante en que la escena se vuelve verdadera.":"I film from a distance, in manual focus and with practical light. I don't ask for retakes, I don't pose anyone. I wait for the instant the scene becomes true.",
-    "Del rodaje al corte final: edito con la misma lógica con la que filmo. Ritmo, silencio y textura. Entrego piezas que se sienten vividas, no fabricadas.":"From the shoot to the final cut: I edit with the same logic I film with. Rhythm, silence and texture. I deliver pieces that feel lived, not manufactured.",
+    "Antes de sacar la cámara, hago el diagnóstico visual: entiendo la marca, el lugar, la luz y a las personas, y reviso qué tendencias del momento le quedan y cuáles no. Entrego un tratamiento visual: look, referencias y cómo se dirigiría cada escena.":"Before the camera comes out, I do a visual diagnosis: I get to know the brand, the place, the light and the people, and I check which current trends fit and which don't. I deliver a visual treatment: look, references and how each scene would be directed.",
+    "Dirijo en set sin invadir: explico la escena, me alejo y dejo que se repita, sin avisar cuándo grabo. Foco manual y luz práctica. Espero el instante en que la escena se vuelve verdadera y elijo esa toma.":"I direct on set without getting in the way: I explain the scene, step back and let it repeat, without saying when I'm recording. Manual focus and practical light. I wait for the instant the scene becomes true, and that's the take I choose.",
+    "Del rodaje a la entrega: edito y corrijo color con la misma lógica con la que filmo. Ritmo, silencio y textura. Entrego piezas que se sienten vividas, no fabricadas, listas para cada plataforma.":"From the shoot to delivery: I edit and grade with the same logic I film with. Rhythm, silence and texture. I deliver pieces that feel lived, not manufactured, ready for each platform.",
     "Lo que no se ve":"What you don't see",
     "Grabar es la mitad del trabajo. Esto es lo que hay detrás de un documental como":"Shooting is half the work. This is what's behind a documentary like",
     "Día de Muertos — Janitzio":"Day of the Dead — Janitzio",
@@ -804,7 +1321,7 @@ footer{
     "El color es parte del relato":"Color is part of the story",
     "Y al final, cada plano pasa por el color. Desliza: a la izquierda el material como sale de cámara, a la derecha el corte final.":"And in the end, every shot goes through color. Drag the line: raw camera footage on the left, the final grade on the right.",
     "Log — cámara":"Log — camera",
-    "¿Tienes una historia que merece ser filmada?":"Do you have a story worth filming?",
+    "¿Tu marca merece verse así?":"Does your brand deserve to look like this?",
     "Escríbeme por WhatsApp":"Message me on WhatsApp",
         "Filmar sin dirigir":"Filming without directing",
     "Foco manual":"Manual focus",
@@ -829,7 +1346,8 @@ footer{
       cb(n);
     }
   }
-  document.getElementById('langBtn').addEventListener('click',function(){
+  var langBtn=document.getElementById('langBtn');
+  function cambiarIdioma(){
     enIngles=!enIngles;
     recorrer(function(n){
       if(enIngles){
@@ -839,10 +1357,12 @@ footer{
     });
     if(waBtn&&waEN)waBtn.setAttribute('href',enIngles?waEN:waES);
     if(waFlot&&waEN)waFlot.setAttribute('href',enIngles?waEN:waES);
-    this.textContent=enIngles?'ES':'EN';
-    this.setAttribute('aria-label',enIngles?'Cambiar a español':'Switch to English');
+    langBtn.textContent=enIngles?'ES':'EN';
+    langBtn.setAttribute('aria-label',enIngles?'Cambiar a español':'Switch to English');
     document.documentElement.lang=enIngles?'en':'es';
-  });
+  }
+  langBtn.addEventListener('click',cambiarIdioma);
+  cambiarIdioma(); /* La página abre en inglés */
 })();
 </script>
 
