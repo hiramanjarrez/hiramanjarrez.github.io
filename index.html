@@ -347,6 +347,8 @@ h2{
 
 /* Timeline real de DaVinci con cabezal animado */
 .tl-real{position:relative;border:1px solid var(--linea);overflow:hidden;background:#1c1c1f}
+.tl-lectura{display:none;justify-content:space-between;align-items:center;margin-bottom:8px;color:var(--polvo)}
+.tl-lectura b{color:var(--papel);font-weight:400;letter-spacing:.12em}
 .tl-real .tl-in{position:relative;container-type:inline-size}
 .tl-real img{display:block;width:100%;height:auto}
 .tl-real .cabezal{position:absolute;top:0;bottom:0;left:13.549%;width:2px;margin-left:-1px;background:#E5484D;box-shadow:0 0 8px rgba(229,72,77,.6);pointer-events:none}
@@ -479,8 +481,9 @@ footer{
   .proceso .paso{flex:0 0 86%;scroll-snap-align:start;counter-increment:paso}
   .proceso .paso .tc-num::after{content:"  ·  " counter(paso,decimal-leading-zero) " / 03";color:var(--tungsteno)}
   /* timeline real: tamaño legible, se desliza de lado */
-  .tl-real{overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain}
-  .tl-real .tl-in{min-width:880px}
+  /* timeline: completo y sin deslizar; el timecode va en una lectura aparte, legible */
+  .tl-real .tc{font-size:0}
+  .tl-lectura{display:flex}
 }
 /* menú compacto en celular */
 @media(max-width:640px){
@@ -857,6 +860,7 @@ body.con-aviso{padding-bottom:58px}
       <div class="cifra"><span class="valor">4:30 h</span><span class="label mono">de material grabado</span></div>
       <div class="cifra"><span class="valor">22 min</span><span class="label mono">que llegan a la pantalla</span></div>
     </div>
+    <div class="tl-lectura mono" aria-hidden="true"><span>Timeline</span><b id="tlLectura">00:00:00:00</b></div>
     <div class="tl-real" id="tlReal" role="img" aria-label="Línea de tiempo real de un proyecto en DaVinci Resolve, con varias pistas de video y audio">
       <div class="tl-in">
         <img src="frames/timeline-real.jpg" alt="Línea de tiempo real en DaVinci Resolve" width="1919" height="601" loading="lazy">
@@ -1037,7 +1041,7 @@ body.con-aviso{padding-bottom:58px}
 
   /* Cabezal que recorre el timeline real */
   (function(){
-    var cab=document.getElementById('tlCab'),tc=document.getElementById('tlTc');
+    var cab=document.getElementById('tlCab'),tc=document.getElementById('tlTc'),lec=document.getElementById('tlLectura');
     if(!cab||!tc)return;
     var ini=13.549,fin=97.290,dur=16000,seg=1320,fps=24;
     function pad(n){return (n<10?'0':'')+n;}
@@ -1045,6 +1049,7 @@ body.con-aviso{padding-bottom:58px}
       cab.style.left=(ini+(fin-ini)*t)+'%';
       var f=Math.floor(t*seg*fps),ss=Math.floor(f/fps);
       tc.textContent='00:'+pad(Math.floor(ss/60))+':'+pad(ss%60)+':'+pad(f%fps);
+      if(lec)lec.textContent=tc.textContent;
     }
     if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){dibuja(.42);return;}
     var t0=null;
@@ -1238,6 +1243,7 @@ body.con-aviso{padding-bottom:58px}
      Para editar la versión en inglés, cambia los textos de la derecha en este
      diccionario. "Observo. Espero. Disparo." no se traduce: es la firma. */
   var dicc={
+    "Timeline":"Timeline",
     "Sitio en construcción · pronto habrá más trabajo y detalles":"Site under construction · more work and details coming soon",
     "Desliza":"Swipe",
     "Servicios":"Services",
