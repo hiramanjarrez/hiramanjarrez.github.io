@@ -223,6 +223,8 @@ h2{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   opacity:.45;filter:saturate(.85) contrast(1.05);
 }
+.hero .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.38;filter:saturate(.9) contrast(1.05);transition:opacity .4s ease}
+.hero .hero-video.apagado{opacity:0}
 .hero > *{position:relative}
 
 
@@ -531,12 +533,9 @@ body.con-aviso{padding-bottom:58px}
 </nav>
 
 <header class="hero">
-  <!-- FONDO TEMPORAL: quitar esta línea cuando el reel esté listo y descomentar el <video> de abajo -->
-  <img class="hero-fondo" src="frames/fondo-hero.jpg" alt="" aria-hidden="true">
-  <!-- ▶ TU REEL AQUÍ: sube tu reel de 45–60s a la carpeta del sitio (ej. reel.mp4,
-       exportado en H.264, 1080p, sin audio o con audio silenciado) y descomenta:
-  <video autoplay muted loop playsinline poster="frames/poster.jpg" src="reel.mp4"></video>
-  -->
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="frames/poster.jpg" aria-hidden="true" tabindex="-1">
+    <source src="frames/loop-portada.mp4" type="video/mp4">
+  </video>
   <span class="bracket tl" aria-hidden="true"></span>
   <span class="bracket tr" aria-hidden="true"></span>
   <span class="bracket bl" aria-hidden="true"></span>
@@ -1157,6 +1156,26 @@ body.con-aviso{padding-bottom:58px}
     if(!av)return;
     document.body.classList.add('con-aviso');
     if(x)x.addEventListener('click',function(){av.classList.add('cerrado');document.body.classList.remove('con-aviso');});
+  })();
+
+
+  /* Video de la portada: se desvanece justo antes y después del reinicio para ocultar el salto del loop */
+  (function(){
+    var v=document.querySelector('.hero-video'),hero=document.querySelector('.hero'); if(!v)return;
+    var reducir=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reducir){v.removeAttribute('autoplay');v.pause();return;}
+    var raf=null;
+    function vigila(){
+      if(v.duration&&isFinite(v.duration))v.classList.toggle('apagado',(v.duration-v.currentTime)<0.4);
+      raf=requestAnimationFrame(vigila);
+    }
+    v.addEventListener('playing',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(vigila);});
+    v.addEventListener('pause',function(){cancelAnimationFrame(raf);});
+    if('IntersectionObserver' in window&&hero){
+      new IntersectionObserver(function(es){
+        es.forEach(function(e){if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){});}else v.pause();});
+      },{threshold:0.05}).observe(hero);
+    }
   })();
 
   /* Filtros de la galería */
