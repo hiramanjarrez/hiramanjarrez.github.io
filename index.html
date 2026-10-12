@@ -129,10 +129,10 @@ nav ul a:hover{color:var(--papel)}
 .btn-wa{
   display:inline-flex;align-items:center;gap:10px;
   font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--negro);background:var(--tungsteno);padding:16px 26px;
+  color:#06210F;background:#25D366;padding:16px 26px;font-weight:700;
   transition:background .25s,transform .25s;
 }
-.btn-wa:hover{background:var(--papel);transform:translateY(-2px)}
+.btn-wa:hover{background:#3EE67F;transform:translateY(-2px)}
 .btn-wa svg{width:16px;height:16px;fill:currentColor}
 .nav-cta{
   background:var(--tungsteno);color:var(--negro) !important;
@@ -529,6 +529,12 @@ footer{
 .aviso-x:hover{opacity:1}
 body.con-aviso{padding-bottom:58px}
 @media(max-width:560px){.aviso-obra{font-size:.62rem;letter-spacing:.08em;gap:10px;padding-left:12px}.aviso-cinta{width:24px}body.con-aviso{padding-bottom:64px}}
+.wa-flotante{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:55;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(0,0,0,.45);transition:transform .25s,background .25s}
+footer{padding-right:88px}
+.wa-flotante:hover{transform:scale(1.07);background:#3EE67F}
+.wa-flotante svg{width:32px;height:32px;fill:currentColor}
+body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+@media(max-width:560px){body.con-aviso .wa-flotante{bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
 </style>
 </head>
 <body>
@@ -948,6 +954,7 @@ body.con-aviso{padding-bottom:58px}
 
 </main>
 
+<a class="wa-flotante" id="waFlotante" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.9-1.4A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a3 3 0 0 0-1 2.2c0 1.3 1 2.6 1.1 2.8.1.2 2 3 4.8 4.2 2.8 1.2 2.8.8 3.3.8.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4Z"/></svg></a>
 <div class="aviso-obra mono" id="avisoObra" role="status">
   <span class="aviso-cinta" aria-hidden="true"></span>
   <span class="aviso-txt">Sitio en construcción · pronto habrá más trabajo y detalles</span>
@@ -1370,10 +1377,12 @@ body.con-aviso{padding-bottom:58px}
   var enIngles=false;
   var waBtn=document.querySelector('.btn-wa');
   var waFlot=document.getElementById('navWa');
+  var waFlo2=document.getElementById('waFlotante');
   var waES=waBtn?waBtn.getAttribute('href'):null;
   var waEN=waES?waES.split('?')[0]+'?text='+encodeURIComponent('Hi Hiram, I saw your website and I\u2019d like to talk about a project.'):null;
   /* El CTA del nav usa el mismo número: solo se edita el botón de contacto */
   if(waFlot&&waES)waFlot.setAttribute('href',waES);
+  if(waFlo2&&waES)waFlo2.setAttribute('href',waES);
   function recorrer(cb){
     var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null),n;
     while(n=w.nextNode()){
@@ -1393,6 +1402,7 @@ body.con-aviso{padding-bottom:58px}
     });
     if(waBtn&&waEN)waBtn.setAttribute('href',enIngles?waEN:waES);
     if(waFlot&&waEN)waFlot.setAttribute('href',enIngles?waEN:waES);
+    if(waFlo2&&waEN)waFlo2.setAttribute('href',enIngles?waEN:waES);
     langBtn.textContent=enIngles?'ES':'EN';
     langBtn.setAttribute('aria-label',enIngles?'Cambiar a español':'Switch to English');
     document.documentElement.lang=enIngles?'en':'es';
