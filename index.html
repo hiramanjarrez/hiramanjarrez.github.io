@@ -555,8 +555,8 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 .frame .etiqueta{display:block;right:14px;line-height:1.5}
 .frame .etiqueta .fmt{white-space:nowrap}
 .frame .fmt{color:var(--tungsteno)}
-.frame::after{content:"\25B6";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background:rgba(14,13,11,.5);border:1px solid rgba(240,235,223,.7);display:flex;align-items:center;justify-content:center;font-size:.85rem;padding-left:3px;color:var(--papel);transition:background .25s,color .25s,border-color .25s;pointer-events:none}
-.frame:hover::after{background:var(--tungsteno);color:var(--negro);border-color:var(--tungsteno)}
+.frame::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background-color:rgba(14,13,11,.5);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23F0EBDF' d='M8 5v14l11-7z'/></svg>");background-repeat:no-repeat;background-position:55% 50%;background-size:24px;border:1px solid rgba(240,235,223,.7);transition:background-color .25s,border-color .25s;pointer-events:none}
+.frame:hover::after{background-color:var(--tungsteno);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%230E0D0B' d='M8 5v14l11-7z'/></svg>");border-color:var(--tungsteno)}
 .gal-mas{display:flex;justify-content:center;margin-top:36px}
 .btn-mas{background:transparent;color:var(--papel);border:1px solid var(--papel);padding:17px 30px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:background .25s,color .25s}
 .btn-mas:hover{background:var(--papel);color:var(--negro)}
@@ -614,7 +614,7 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
     <span class="hc-br" aria-hidden="true"></span>
     <a class="hc-serv" href="#servicios">Servicios</a>
   </div>
-  <button class="btn-reel oculto-temp" id="abrirReel" type="button"><span class="tri">▶</span> Ver reel — 60 seg</button>
+  <button class="btn-reel oculto-temp" id="abrirReel" type="button"><span class="tri">▶&#xFE0E;</span> Ver reel — 60 seg</button>
 </header>
 
 <main>
