@@ -84,7 +84,7 @@ nav ul a:hover{color:var(--papel)}
 
 .hero h1{
   font-family:'Archivo',sans-serif;font-weight:900;font-stretch:118%;
-  font-size:clamp(2.6rem,9.5vw,7.2rem);
+  font-size:clamp(2.4rem,6.4vw,4.8rem);
   line-height:1.02;letter-spacing:-.01em;text-transform:uppercase;
   text-align:center;
 }
@@ -94,17 +94,24 @@ nav ul a:hover{color:var(--papel)}
   animation:foco 1.1s cubic-bezier(.2,.7,.2,1) forwards;
 }
 .hero h1 span:nth-child(1){animation-delay:.3s}
-.hero h1 span:nth-child(2){animation-delay:1.15s;color:var(--polvo)}
-.hero h1 span:nth-child(3){animation-delay:2s;color:var(--tungsteno)}
+.hero h1 span:nth-child(2){animation-delay:.9s}
 @keyframes foco{to{opacity:1;filter:blur(0)}}
 .hero .sub{
   margin-top:28px;text-align:center;color:var(--polvo);
-  opacity:0;animation:foco 1s ease 2.9s forwards;
+  opacity:0;animation:foco 1s ease 1.7s forwards;
   display:flex;flex-direction:column;align-items:center;gap:7px;
 }
 .hero .s-nombre{color:var(--papel);font-size:1.1rem}
 .hero .s-rol{color:var(--tungsteno);letter-spacing:.28em}
-.hero .s-servicio{color:var(--papel);font-size:1rem;max-width:30em;line-height:1.35}
+.hero .s-servicio{color:var(--papel);font-size:1.3rem;max-width:26em;line-height:1.3;padding:0 20px}
+.hero-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:24px;padding:0 16px;opacity:0;animation:foco 1s ease 1.9s forwards;position:relative;z-index:2}
+.btn-ver{display:inline-flex;align-items:center;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--negro);background:var(--tungsteno);padding:17px 28px;transition:background .25s,transform .25s}
+.btn-ver:hover{background:var(--papel);transform:translateY(-2px)}
+.hero-cats{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;margin-top:20px;padding:0 20px;max-width:46em;opacity:0;animation:foco 1s ease 2.1s forwards;position:relative;z-index:2}
+.hero-cats a{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--papel);padding:4px 0;border-bottom:1px solid rgba(244,240,232,.4);text-shadow:0 1px 10px rgba(0,0,0,.6);transition:color .2s,border-color .2s}
+.hero-cats a:hover{color:var(--tungsteno);border-color:var(--tungsteno)}
+@media(max-width:480px){.hero .s-servicio{font-size:1.02rem}.hero-cta{gap:10px;margin-top:20px}.btn-ver,.hero-cta .btn-wa{padding:15px 20px;font-size:.72rem}}
+@media(prefers-reduced-motion:reduce){.hero-cta,.hero-cats{animation:none;opacity:1}}
 .hero .s-base{
   display:inline-flex;align-items:center;gap:.65em;margin-top:6px;padding:9px 18px;
   border:1px solid rgba(244,240,232,.34);border-radius:999px;background:rgba(13,12,10,.52);
@@ -129,10 +136,10 @@ nav ul a:hover{color:var(--papel)}
 .btn-wa{
   display:inline-flex;align-items:center;gap:10px;
   font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;
-  color:#06210F;background:#25D366;padding:16px 26px;font-weight:700;
+  color:var(--negro);background:var(--tungsteno);padding:16px 26px;font-weight:700;
   transition:background .25s,transform .25s;
 }
-.btn-wa:hover{background:#3EE67F;transform:translateY(-2px)}
+.btn-wa:hover{background:var(--papel);transform:translateY(-2px)}
 .btn-wa svg{width:16px;height:16px;fill:currentColor}
 .nav-cta{
   background:var(--tungsteno);color:var(--negro) !important;
@@ -334,12 +341,14 @@ h2{
   font-family:'Archivo',sans-serif;font-weight:800;font-stretch:112%;
   font-size:clamp(1.3rem,2.6vw,1.8rem);text-transform:uppercase;margin-bottom:8px;
 }
+.noseve h3{max-width:22em;line-height:1.15}
 .noseve .nota{color:var(--polvo);margin-bottom:30px;max-width:36em}
+#servicios .noseve{margin-bottom:10px}
 .cifras{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,4vw,48px);margin-bottom:38px}
-@media(max-width:640px){.cifras{grid-template-columns:1fr;gap:22px}}
+@media(max-width:640px){.cifras{gap:12px;margin-bottom:28px}.cifra .label{font-size:.56rem;letter-spacing:.08em;line-height:1.4}}
 .cifra .valor{
   font-family:'Archivo',sans-serif;font-weight:900;font-stretch:118%;
-  font-size:clamp(2.2rem,5.5vw,3.6rem);line-height:1;display:block;
+  font-size:clamp(1.5rem,3.4vw,2.4rem);line-height:1;display:block;
 }
 .cifra:nth-child(3) .valor{color:var(--tungsteno)}
 .cifra .label{color:var(--polvo);display:block;margin-top:8px}
@@ -535,6 +544,29 @@ footer{padding-right:88px}
 .wa-flotante svg{width:32px;height:32px;fill:currentColor}
 body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 @media(max-width:560px){body.con-aviso .wa-flotante{bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
+
+/* ---- Galería simple: 6 destacados + reels, y "Ver todo" ---- */
+#filtros{display:none}
+#filtros.on{display:flex}
+.galeria.modo-top .frame[data-top]{order:var(--o)}
+.galeria.oculto-g,.gal-sub.oculto-g{display:none}
+.gal-sub{display:block;margin:44px 0 14px;color:var(--tungsteno)}
+.frame .num,.frame .play,.frame .placeholder-txt{display:none}
+.frame .etiqueta{display:block;right:14px;line-height:1.5}
+.frame .etiqueta .fmt{white-space:nowrap}
+.frame .fmt{color:var(--tungsteno)}
+.frame::after{content:"\25B6";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background:rgba(14,13,11,.5);border:1px solid rgba(240,235,223,.7);display:flex;align-items:center;justify-content:center;font-size:.85rem;padding-left:3px;color:var(--papel);transition:background .25s,color .25s,border-color .25s;pointer-events:none}
+.frame:hover::after{background:var(--tungsteno);color:var(--negro);border-color:var(--tungsteno)}
+.gal-mas{display:flex;justify-content:center;margin-top:36px}
+.btn-mas{background:transparent;color:var(--papel);border:1px solid var(--papel);padding:17px 30px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:background .25s,color .25s}
+.btn-mas:hover{background:var(--papel);color:var(--negro)}
+.btn-mas .t-menos{display:none}
+.btn-mas.abierto .t-menos{display:inline}
+.btn-mas.abierto .t-todo{display:none}
+.gal-paises{display:block;margin-top:34px;text-align:center;color:var(--polvo)}
+.ofertas .lead{margin:0 0 36px}
+.hero-cats .hc-br{flex-basis:100%;height:0}
+@media(max-width:480px){.hero-cats{gap:8px 14px}.hero-cats a{letter-spacing:.08em}}
 </style>
 </head>
 <body>
@@ -543,8 +575,8 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
   <a class="logo" href="#" aria-label="Hiram Manjarrez, inicio">HIRAM MANJARREZ</a>
   <ul class="mono">
     <li><a href="#trabajo">Trabajo</a></li>
-    <li><a href="#manifiesto">Manifiesto</a></li>
     <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#servicios">Servicios</a></li>
     <li><a href="#contacto">Contacto</a></li>
     <li><a class="nav-cta" id="navWa" href="#" target="_blank" rel="noopener">Hablemos</a></li>
     <li><button class="lang-btn" id="langBtn" type="button" aria-label="Switch to English">EN</button></li>
@@ -561,15 +593,30 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
   <span class="bracket br" aria-hidden="true"></span>
 
   <h1>
-    <span>Observo.</span>
-    <span>Espero.</span>
-    <span>Disparo.</span>
+    <span>Hiram</span>
+    <span>Manjarrez</span>
   </h1>
   <div class="sub">
-    <span class="s-nombre">Hiram Manjarrez</span>
     <span class="s-rol mono">Cinematographer &amp; Director</span>
     <span class="s-servicio">Dirección visual para marcas: look, tratamiento y rodaje</span>
     <span class="s-base"><i class="punto" aria-hidden="true"></i><span>Base en</span><span class="s-lugar"><b class="s-dubai">Dubái</b>, EAU · Worldwide</span></span>
+  </div>
+  <div class="hero-cta">
+    <a class="btn-ver mono" href="#trabajo">Ver el trabajo</a>
+    <a class="btn-wa" href="https://wa.me/971528905144?text=Hola%20Hiram%2C%20vi%20tu%20p%C3%A1gina%20y%20me%20interesa%20hablar%20de%20un%20proyecto." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.9-1.4A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a3 3 0 0 0-1 2.2c0 1.3 1 2.6 1.1 2.8.1.2 2 3 4.8 4.2 2.8 1.2 2.8.8 3.3.8.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4Z"/></svg>
+      Escríbeme por WhatsApp
+    </a>
+  </div>
+  <div class="hero-cats mono" role="navigation" aria-label="Ir directo a una categoría">
+    <a href="#trabajo" data-ir="comercial">Brand films</a>
+    <a href="#trabajo" data-ir="reels">Vertical / Reels</a>
+    <a href="#trabajo" data-ir="fashion">Fashion films</a>
+    <span class="hc-br" aria-hidden="true"></span>
+    <a href="#trabajo" data-ir="musical">Videos musicales</a>
+    <a href="#trabajo" data-ir="documental">Documental</a>
+    <span class="hc-br" aria-hidden="true"></span>
+    <a class="hc-serv" href="#servicios">Servicios</a>
   </div>
   <button class="btn-reel oculto-temp" id="abrirReel" type="button"><span class="tri">▶</span> Ver reel — 60 seg</button>
 </header>
@@ -579,9 +626,9 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 <section class="wrap" id="trabajo">
   <span class="eyebrow mono">Trabajo seleccionado</span>
   <h2>Una mirada, todos los formatos</h2>
-  <p class="gal-nota">Es la misma sensibilidad aplicada a formatos distintos. Cambia el encargo; la mirada no.</p>
-  <div class="filtros" role="group" aria-label="Filtrar trabajos por formato">
-    <button class="chip activo" type="button" data-filtro="comercial">Brand films</button>
+  <div class="filtros" id="filtros" role="group" aria-label="Filtrar trabajos por formato">
+    <button class="chip activo" type="button" data-filtro="todo">Todo</button>
+    <button class="chip" type="button" data-filtro="comercial">Brand films</button>
     <button class="chip" type="button" data-filtro="reels">Vertical / Reels</button>
     <button class="chip" type="button" data-filtro="fashion">Fashion films</button>
     <button class="chip" type="button" data-filtro="musical">Videos musicales</button>
@@ -591,7 +638,7 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
          y agrega frames con data-cat="realestate":
     <button class="chip" type="button" data-filtro="realestate">Real estate</button> -->
   </div>
-  <div class="galeria">
+  <div class="galeria modo-top" id="galPrincipal">
     <!-- ▶ CÓMO USAR CADA FRAME:
          1. Exporta un fotograma desde DaVinci: 1920px de ancho, 2.39:1, con tu color,
             y reemplaza el src de la imagen (ej. frames/janitzio.jpg).
@@ -599,94 +646,75 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
             · Vimeo:   https://player.vimeo.com/video/TU_ID?autoplay=1
             · YouTube: https://www.youtube.com/embed/TU_ID?autoplay=1
          3. El href es el respaldo si data-video está vacío (abre en otra pestaña). -->
-    <a class="frame" data-cat="comercial" data-video="https://player.vimeo.com/video/1231808911?h=9de905c5f1&autoplay=1" href="#" target="_blank" rel="noopener">
+    
+    <a class="frame" data-top="1" style="--o:1" data-cat="comercial" data-video="https://player.vimeo.com/video/1231808911?h=9de905c5f1&autoplay=1" href="#" target="_blank" rel="noopener">
       <img style="object-position:50% 65%" src="https://i.vimeocdn.com/video/2207179420-6d887da925d9d5b2c5311e984c3b6a151e22f79e97c544b391db6d9c8f142ee0-d_2400?region=us" alt="Muebles Valdés Baluarte" loading="lazy">
-      <span class="etiqueta mono"><span class="num">01</span> Muebles Valdés Baluarte</span>
+      <span class="etiqueta mono"><span class="num">01</span> Muebles Valdés Baluarte <span class="fmt">· Brand film</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
-    <a class="frame" data-cat="comercial" data-video="https://player.vimeo.com/video/1231906336?h=a5b7683b87&autoplay=1" href="#" target="_blank" rel="noopener">
+    <a class="frame" data-top="1" style="--o:3" data-cat="comercial" data-video="https://player.vimeo.com/video/1231906336?h=a5b7683b87&autoplay=1" href="#" target="_blank" rel="noopener">
       <img src="https://i.vimeocdn.com/video/2207184940-2b8e21832f5689ed835a891790fc6ac19394c371392cd0a1ac979f3d8ef6ac8d-d_2400?region=us" alt="Yuniko Sushi" loading="lazy">
-      <span class="etiqueta mono"><span class="num">02</span> Yuniko Sushi</span>
+      <span class="etiqueta mono"><span class="num">02</span> Yuniko Sushi <span class="fmt">· Commercial</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
     <a class="frame" data-cat="comercial" data-video="https://player.vimeo.com/video/1231905935?h=b765f77605&autoplay=1" href="#" target="_blank" rel="noopener">
       <img src="https://i.vimeocdn.com/video/2207181218-05d8a0770d723eca37b16c75fff2949079c015d0adec80af6020e7124eb7f6ea-d_2400?region=us" alt="Sunday Spot — Amigas" loading="lazy">
-      <span class="etiqueta mono"><span class="num">03</span> Sunday Spot — Amigas</span>
+      <span class="etiqueta mono"><span class="num">03</span> Sunday Spot — Amigas <span class="fmt">· Brand film</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
     <a class="frame" data-cat="comercial" data-video="https://player.vimeo.com/video/527440370?h=cd92b3e25f&autoplay=1" href="#" target="_blank" rel="noopener">
       <img style="object-position:50% 15%" src="https://i.vimeocdn.com/video/1091862848-9401ccef9a2ea732bd634190830bb6e7215ae02bb9a742157fcd4f868c74f84c-d_2400?region=us" alt="Salva — Reparación de iPhone" loading="lazy">
-      <span class="etiqueta mono"><span class="num">04</span> Salva — Reparación de iPhone</span>
+      <span class="etiqueta mono"><span class="num">04</span> Salva — Reparación de iPhone <span class="fmt">· Brand film</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
-    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-video="https://player.vimeo.com/video/1231919314?h=b15d98d889&autoplay=1" href="https://vimeo.com/1231919314" target="_blank" rel="noopener">
-      <span class="placeholder-txt mono">Vertical</span>
-      <span class="etiqueta mono"><span class="num">V1</span> <span class="titulo-auto">Valdés Baluarte · Kids</span></span>
-      <span class="play mono">▶ Ver</span>
-    </a>
-    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-video="https://player.vimeo.com/video/1231919053?h=e5a7c7217f&autoplay=1" href="https://vimeo.com/1231919053" target="_blank" rel="noopener">
-      <span class="placeholder-txt mono">Vertical</span>
-      <span class="etiqueta mono"><span class="num">V2</span> <span class="titulo-auto">Platillos · Historia</span></span>
-      <span class="play mono">▶ Ver</span>
-    </a>
-    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-video="https://player.vimeo.com/video/1231919101?h=7bc4b174b3&autoplay=1" href="https://vimeo.com/1231919101" target="_blank" rel="noopener">
-      <span class="placeholder-txt mono">Vertical</span>
-      <span class="etiqueta mono"><span class="num">V3</span> <span class="titulo-auto">Sunday Sushi Bar · Flambé</span></span>
-      <span class="play mono">▶ Ver</span>
-    </a>
-    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-video="https://player.vimeo.com/video/1231919142?autoplay=1" href="https://vimeo.com/1231919142" target="_blank" rel="noopener">
-      <span class="placeholder-txt mono">Vertical</span>
-      <span class="etiqueta mono"><span class="num">V4</span> <span class="titulo-auto">Vertical</span></span>
-      <span class="play mono">▶ Ver</span>
-    </a>
-    <a class="frame" data-cat="fashion" data-video="https://player.vimeo.com/video/1231907245?h=fe31ebc97d&autoplay=1" href="#" target="_blank" rel="noopener">
+    <a class="frame" data-top="1" style="--o:2" data-cat="fashion" data-video="https://player.vimeo.com/video/1231907245?h=fe31ebc97d&autoplay=1" href="#" target="_blank" rel="noopener">
       <img src="https://i.vimeocdn.com/video/2207184636-78aa7b362c0519a2305f8c3fc06a4a251ecf64b4a59947758c29d5e561cd64a2-d_2400?region=us" alt="Nataly · San Petersburgo" loading="lazy">
-      <span class="etiqueta mono"><span class="num">05</span> Nataly · San Petersburgo</span>
+      <span class="etiqueta mono"><span class="num">05</span> Nataly · San Petersburgo <span class="fmt">· Fashion film</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
     <a class="frame" data-cat="fashion" data-video="https://player.vimeo.com/video/1231907492?h=7f6071ce54&autoplay=1" href="#" target="_blank" rel="noopener">
       <img src="https://i.vimeocdn.com/video/2207184275-2cf2960761ee9932dda5896f82bbc1dd523930dc51859b979820a24615990b46-d_2400?region=us" alt="Berlín" loading="lazy">
-      <span class="etiqueta mono"><span class="num">06</span> Berlín</span>
+      <span class="etiqueta mono"><span class="num">06</span> Berlín <span class="fmt">· Fashion film</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
     <a class="frame" data-cat="fashion" data-video="https://player.vimeo.com/video/1231905852?h=ddfdd74c5c&autoplay=1" href="#" target="_blank" rel="noopener">
       <img src="https://i.vimeocdn.com/video/2207182278-ccbd0876dbd31dd3d905b41c6acf977ce59d3faf40e806eab26e72d9271f4783-d_2400?region=us" alt="Praga" loading="lazy">
-      <span class="etiqueta mono"><span class="num">07</span> Praga</span>
+      <span class="etiqueta mono"><span class="num">07</span> Praga <span class="fmt">· Fashion film</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
     <a class="frame" data-cat="fashion" data-video="https://player.vimeo.com/video/1231905003?h=38f30042f3&autoplay=1" href="#" target="_blank" rel="noopener">
       <img src="https://i.vimeocdn.com/video/2207180590-422b26c850054e40b7d185d6d9d74355adcd6608c14aa77ed6553d836d4e91b7-d_2400?region=us" alt="Granada" loading="lazy">
-      <span class="etiqueta mono"><span class="num">08</span> Granada</span>
+      <span class="etiqueta mono"><span class="num">08</span> Granada <span class="fmt">· Fashion film</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
     <a class="frame" data-cat="musical" data-video="https://player.vimeo.com/video/1231734105?h=4d3b23c729&autoplay=1" href="#" target="_blank" rel="noopener">
       <img style="--zoom:1.4;--origen:50% 30%;clip-path:inset(8.57% 14.29% 20% 14.29%)" src="https://i.vimeocdn.com/video/2206967014-9487399607ba96d3f6f4990fc06de4c405923669e24ff8c5c80524c8f833687f-d_2400?region=us" alt="Polémica Victoria — Nice" loading="lazy">
-      <span class="etiqueta mono"><span class="num">09</span> Polémica Victoria — Nice</span>
+      <span class="etiqueta mono"><span class="num">09</span> Polémica Victoria — Nice <span class="fmt">· Music video</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
     <a class="frame" data-cat="musical" data-video="https://player.vimeo.com/video/1231802742?h=a26e3861cc&autoplay=1" href="#" target="_blank" rel="noopener">
       <img src="https://i.vimeocdn.com/video/2207179213-6503f009efe92e3b3c626b96e1f76827176a25eac1c1c9cb89a0923fa131a8dd-d_2400?region=us" alt="Banda Punto Medio — Mirarte de frente" loading="lazy">
-      <span class="etiqueta mono"><span class="num">10</span> Banda Punto Medio — Mirarte de frente</span>
+      <span class="etiqueta mono"><span class="num">10</span> Banda Punto Medio — Mirarte de frente <span class="fmt">· Music video</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
     <a class="frame" data-cat="musical" data-video="https://player.vimeo.com/video/1231747082?h=fb9bb41c3b&autoplay=1" href="#" target="_blank" rel="noopener">
       <img src="https://i.vimeocdn.com/video/2207192989-60484ecb12ba9e591c20933ab326a7ba7fecbef3ad4cc64721c28cc1a2fe4e37-d_2400?region=us" alt="Apolonio — Si tú quieres" loading="lazy">
-      <span class="etiqueta mono"><span class="num">11</span> Apolonio — Si tú quieres</span>
+      <span class="etiqueta mono"><span class="num">11</span> Apolonio — Si tú quieres <span class="fmt">· Music video</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
-    <a class="frame" data-portada-fija="1" data-cat="musical" data-video="https://player.vimeo.com/video/1231737599?h=83bd26e145&autoplay=1" href="#" target="_blank" rel="noopener">
+    <a class="frame" data-top="1" style="--o:4" data-portada-fija="1" data-cat="musical" data-video="https://player.vimeo.com/video/1231737599?h=83bd26e145&autoplay=1" href="#" target="_blank" rel="noopener">
       <img src="frames/vc-luis-carlos-y-sigues.jpg" alt="Luis Carlos — Y sigues siendo tú" loading="lazy">
-      <span class="etiqueta mono"><span class="num">12</span> Luis Carlos — Y sigues siendo tú</span>
+      <span class="etiqueta mono"><span class="num">12</span> Luis Carlos — Y sigues siendo tú <span class="fmt">· Music video</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
     <a class="frame" data-cat="musical" data-video="https://player.vimeo.com/video/805209083?h=9e7920e5af&autoplay=1" href="#" target="_blank" rel="noopener">
       <img src="https://i.vimeocdn.com/video/2207191969-1d479562fd650f7ebf905352047e65b29a954b77ce0e5e0665479ec607658901-d_2400?region=us" alt="Blessed Dog — Mala" loading="lazy">
-      <span class="etiqueta mono"><span class="num">13</span> Blessed Dog — Mala</span>
+      <span class="etiqueta mono"><span class="num">13</span> Blessed Dog — Mala <span class="fmt">· Music video</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
     <a class="frame" data-cat="musical" data-video="https://player.vimeo.com/video/693431980?h=faa01730e7&autoplay=1" href="#" target="_blank" rel="noopener">
       <img src="https://i.vimeocdn.com/video/2207192467-55d040397bb6951002fa960f5f260f300cdbd6b87818120f6c017d8364d53cf6-d_2400?region=us" alt="Kmill — La Excusa" loading="lazy">
-      <span class="etiqueta mono"><span class="num">14</span> Kmill — La Excusa</span>
+      <span class="etiqueta mono"><span class="num">14</span> Kmill — La Excusa <span class="fmt">· Music video</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
     <a class="frame" data-cat="documental" data-video="https://player.vimeo.com/video/1231909849?h=3266d86a6f&autoplay=1" href="#" target="_blank" rel="noopener">
@@ -720,6 +748,33 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
       <span class="play mono">▶ Ver</span>
     </a>
   </div>
+  <span class="gal-sub mono" id="galReelsTit">Reels</span>
+  <div class="galeria vertical" id="galReels">
+    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-video="https://player.vimeo.com/video/1231919314?h=b15d98d889&autoplay=1" href="https://vimeo.com/1231919314" target="_blank" rel="noopener">
+      <span class="placeholder-txt mono">Vertical</span>
+      <span class="etiqueta mono"><span class="num">V1</span> <span class="titulo-auto">Valdés Baluarte · Kids</span></span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-video="https://player.vimeo.com/video/1231919053?h=e5a7c7217f&autoplay=1" href="https://vimeo.com/1231919053" target="_blank" rel="noopener">
+      <span class="placeholder-txt mono">Vertical</span>
+      <span class="etiqueta mono"><span class="num">V2</span> <span class="titulo-auto">Platillos · Historia</span></span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-video="https://player.vimeo.com/video/1231919101?h=7bc4b174b3&autoplay=1" href="https://vimeo.com/1231919101" target="_blank" rel="noopener">
+      <span class="placeholder-txt mono">Vertical</span>
+      <span class="etiqueta mono"><span class="num">V3</span> <span class="titulo-auto">Sunday Sushi Bar · Flambé</span></span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-video="https://player.vimeo.com/video/1231919142?autoplay=1" href="https://vimeo.com/1231919142" target="_blank" rel="noopener">
+      <span class="placeholder-txt mono">Vertical</span>
+      <span class="etiqueta mono"><span class="num">V4</span> <span class="titulo-auto">Vertical</span></span>
+      <span class="play mono">▶ Ver</span>
+    </a>
+  </div>
+  <div class="gal-mas">
+    <button class="btn-mas mono" id="verTodo" type="button" aria-expanded="false"><span class="t-todo">Ver todo el trabajo</span><span class="t-menos">Ver menos</span></button>
+  </div>
+  <p class="gal-paises mono">Filmado en México, Marruecos, Jordania, Chequia y Rusia</p>
   <span class="gal-entrega mono">Dirección · producción · cinefotografía · edición · color — del primer plano al corte final, salvo donde se indica</span>
 </section>
 
@@ -775,69 +830,6 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 </section>
 
 
-<section class="territorios wrap">
-  <span class="eyebrow mono">Territorios</span>
-  <h2>Dónde he filmado</h2>
-  <!-- ▶ Cada tarjeta lleva un fotograma pequeño de ese país (mismo formato: 2.39:1,
-       basta con 960px de ancho). Guárdalos en /frames/ y descomenta el <img>. -->
-  <div class="terr-grid">
-    <div class="terr-card">
-      <div class="mini">
-        <!-- <img src="frames/terr-mexico.jpg" alt="Fotograma filmado en México"> -->
-        <img src="frames/terr-mexico.jpg" alt="Fotograma filmado en Janitzio, México" loading="lazy">
-      </div>
-      <div class="info">
-        <span class="lugar">México</span>
-        <span class="detalle">Documental en Sinaloa y Janitzio · comerciales, videos musicales y televisión</span>
-        <span class="tipo mono">Doc · Música · Brands</span>
-      </div>
-    </div>
-    <div class="terr-card">
-      <div class="mini">
-        <!-- <img src="frames/terr-marruecos.jpg" alt="Fotograma filmado en Marruecos"> -->
-        <img src="frames/terr-marruecos.jpg" alt="Fotograma filmado en Marruecos" loading="lazy">
-      </div>
-      <div class="info">
-        <span class="lugar">Marruecos</span>
-        <span class="detalle">Serie documental TOS · Marrakesh y el desierto</span>
-        <span class="tipo mono">Documental</span>
-      </div>
-    </div>
-    <div class="terr-card">
-      <div class="mini">
-        <!-- <img src="frames/terr-jordania.jpg" alt="Fotograma filmado en Jordania"> -->
-        <img src="frames/terr-jordania.jpg" alt="Fotograma filmado en Jordania" loading="lazy">
-      </div>
-      <div class="info">
-        <span class="lugar">Jordania</span>
-        <span class="detalle">Serie documental TOS · Wadi Rum y las comunidades beduinas</span>
-        <span class="tipo mono">Documental</span>
-      </div>
-    </div>
-    <div class="terr-card">
-      <div class="mini">
-        <!-- <img src="frames/terr-suecia.jpg" alt="Fotograma filmado en Suecia"> -->
-        <img src="frames/terr-chequia.jpg" alt="Fotograma filmado en Praga, República Checa" loading="lazy">
-      </div>
-      <div class="info">
-        <span class="lugar">República Checa</span>
-        <span class="detalle">Fashion film en Praga</span>
-        <span class="tipo mono">Fashion</span>
-      </div>
-    </div>
-    <div class="terr-card">
-      <div class="mini">
-        <!-- <img src="frames/terr-eau.jpg" alt="Fotograma filmado en Emiratos Árabes"> -->
-        <img src="frames/terr-rusia.jpg" alt="Fotograma filmado en San Petersburgo, Rusia" loading="lazy">
-      </div>
-      <div class="info">
-        <span class="lugar">Rusia</span>
-        <span class="detalle">Fashion film en San Petersburgo</span>
-        <span class="tipo mono">Fashion</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="proceso wrap" id="proceso">
   <span class="eyebrow mono">Proceso</span>
@@ -863,52 +855,15 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
     </div>
   </div>
 
-  <p class="alcance mono">Dirección visual y producción creativa, de la locación y el casting al corte final. La estrategia, el calendario de contenido y la publicación se quedan con tu equipo de marketing.</p>
 
-  <div class="noseve">
-    <h3>Lo que no se ve</h3>
-    <p class="nota">Grabar es la mitad del trabajo. Esto es lo que hay detrás de un documental como <em style="color:var(--papel)">Día de Muertos — Janitzio</em>, codirigido con Leila Kazemi:</p>
-    <!-- ▶ PON TUS CIFRAS REALES de Janitzio (o del documental que elijas como caso).
-         Días de rodaje, horas de material bruto y duración del corte final.
-         Regla: solo números que puedas defender si el cliente pregunta. -->
-    <div class="cifras">
-      <div class="cifra"><span class="valor">3 días</span><span class="label mono">de rodaje en comunidad</span></div>
-      <div class="cifra"><span class="valor">4:30 h</span><span class="label mono">de material grabado</span></div>
-      <div class="cifra"><span class="valor">22 min</span><span class="label mono">que llegan a la pantalla</span></div>
-    </div>
-    <div class="tl-lectura mono" aria-hidden="true"><span>Timeline</span><b id="tlLectura">00:00:00:00</b></div>
-    <div class="tl-real" id="tlReal" role="img" aria-label="Línea de tiempo real de un proyecto en DaVinci Resolve, con varias pistas de video y audio">
-      <div class="tl-in">
-        <img src="frames/timeline-real.jpg" alt="Línea de tiempo real en DaVinci Resolve" width="1919" height="601" loading="lazy">
-        <span class="tc" id="tlTc">00:00:00:00</span>
-        <span class="cabezal" id="tlCab"></span>
-      </div>
-    </div>
-  </div>
-
-  <div class="compara-bloque">
-    <h3>El color es parte del relato</h3>
-    <p class="nota">Y al final, cada plano pasa por el color. Desliza: a la izquierda el material como sale de cámara, a la derecha el corte final.</p>
-    <!-- ▶ CÓMO USAR: exporta EL MISMO fotograma dos veces desde DaVinci —
-         uno en log (sin gradear) y otro con tu color final. Mismo encuadre exacto.
-         1. Guarda frames/color-antes.jpg (log) y frames/color-despues.jpg (graded).
-         2. Cambia los src de las dos imágenes de abajo.
-         3. Quita la clase "simulado" de la primera imagen (hoy finge el log con CSS). -->
-    <div class="compara" id="compara">
-      <img class="c-antes" src="frames/color-antes.jpg" alt="Fotograma sin corrección de color">
-      <img class="c-despues" src="frames/color-despues.jpg" alt="Fotograma con corrección de color final">
-      <div class="c-linea" aria-hidden="true"></div>
-      <span class="tag izq mono">Log — cámara</span>
-      <span class="tag der mono">Graded — final</span>
-      <input type="range" min="0" max="100" value="68" step="0.1" aria-label="Comparar antes y después del color">
-    </div>
-  </div>
 </section>
 
 <section class="ofertas wrap" id="servicios">
   <span class="eyebrow mono">Servicios</span>
-  <h2>Qué puedes contratar</h2>
-  <p class="lead">Todos los proyectos empiezan con dirección visual: el look, el tratamiento y la lista de planos.</p>
+  <div class="noseve" style="margin-top:0">
+    <h3>Hacemos nuestro mejor esfuerzo por crear piezas de contenido únicas para ti</h3>
+    <p class="nota">Cada pieza empieza desde cero. Llega con una idea, o solo con un objetivo. Afilamos la tuya, sumamos las nuestras y la convertimos en un concepto claro, un look y una pieza hecha solo para ti. Preproducción, producción y postproducción, todo desde un mismo equipo, para que lo que imaginaste llegue a la pantalla, pero más fuerte.</p>
+  </div>
   <div class="ofertas-grid">
     <article class="oferta">
       <span class="num mono">01</span>
@@ -964,7 +919,6 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 <footer class="mono">
   <span>© 2026 Hiram Manjarrez</span>
   <span>Worldwide · Base en Dubái</span>
-  <span>Observo. Espero. Disparo.</span>
 </footer>
 
 <div class="lightbox" id="reelBox" role="dialog" aria-modal="true" aria-label="Reel de Hiram Manjarrez">
@@ -1107,7 +1061,7 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
   (function(){
     var movil=window.matchMedia('(max-width:760px)'),
         reducir=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-        cfgs=[{sel:'.galeria',item:'.frame:not(.oculto)'},{sel:'.terr-grid',item:'.terr-card'},
+        cfgs=[{sel:'#galPrincipal',item:'.frame:not(.oculto)'},{sel:'#galReels',item:'.frame:not(.oculto)'},{sel:'.terr-grid',item:'.terr-card'},
               {sel:'.proceso .pasos',item:'.paso'},{sel:'.ofertas-grid',item:'.oferta'}],
         ctls=[];
     function crea(cfg){
@@ -1201,17 +1155,38 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
     }
   })();
 
-  /* Filtros de la galería */
+  /* Galería: 6 destacados + reels; "Ver todo" abre los filtros */
   var chips=document.querySelectorAll('.chip'),
-      frames=document.querySelectorAll('.galeria .frame');
-  var galeria=document.querySelector('.galeria');
+      frames=document.querySelectorAll('.galeria .frame'),
+      galP=document.getElementById('galPrincipal'),galR=document.getElementById('galReels'),
+      galRt=document.getElementById('galReelsTit'),filtros=document.getElementById('filtros'),
+      btnTodo=document.getElementById('verTodo'),abierta=false,filtroAct='todo';
   function aplicar(f){
+    filtroAct=f;
     frames.forEach(function(fr){
-      fr.classList.toggle('oculto', f!=='todo' && fr.dataset.cat!==f);
+      var oc=abierta ? (f!=='todo' && fr.dataset.cat!==f) : (!fr.classList.contains('vert') && fr.dataset.top!=='1');
+      fr.classList.toggle('oculto',oc);
     });
-    if(galeria)galeria.classList.toggle('vertical', f==='reels');
-    if(galeria)galeria.scrollLeft=0;
+    var verR=!abierta || f==='todo' || f==='reels';
+    if(galR)galR.classList.toggle('oculto-g',!verR);
+    if(galRt)galRt.classList.toggle('oculto-g',!verR);
+    if(galP)galP.classList.toggle('oculto-g',abierta && f==='reels');
+    if(galP)galP.scrollLeft=0; if(galR)galR.scrollLeft=0;
   }
+  function setAbierta(v){
+    abierta=v;
+    if(galP)galP.classList.toggle('modo-top',!v);
+    if(filtros)filtros.classList.toggle('on',v);
+    if(btnTodo){btnTodo.classList.toggle('abierto',v);btnTodo.setAttribute('aria-expanded',v?'true':'false');}
+    if(!v){chips.forEach(function(c){c.classList.toggle('activo',c.dataset.filtro==='todo');});filtroAct='todo';}
+    aplicar(filtroAct);
+    setTimeout(function(){window.dispatchEvent(new Event('resize'));},50);
+  }
+  window.galAbrir=function(){if(!abierta)setAbierta(true);};
+  if(btnTodo)btnTodo.addEventListener('click',function(){
+    var cerrar=abierta; setAbierta(!abierta);
+    if(cerrar){var t=document.getElementById('trabajo');if(t)t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
   chips.forEach(function(chip){
     chip.addEventListener('click',function(){
       chips.forEach(function(c){c.classList.remove('activo');});
@@ -1219,8 +1194,7 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
       aplicar(chip.dataset.filtro);
     });
   });
-  var inicial=document.querySelector('.chip.activo');
-  if(inicial)aplicar(inicial.dataset.filtro);
+  aplicar('todo');
 
   /* Comparador de color */
   var comp=document.getElementById('compara');
@@ -1264,6 +1238,21 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
     "Timeline":"Timeline",
     "Sitio en construcción · pronto habrá más trabajo y detalles":"Site under construction · more work and details coming soon",
     "Desliza":"Swipe",
+    "Fashion film":"Fashion film",
+    "Una pieza para diseñadores y marcas de moda, donde la mirada es el brief.":"A piece for designers and fashion brands, where the eye is the brief.",
+    "Videoclip":"Music video",
+    "Para artistas y sellos. Construido alrededor de la canción y una idea visual fuerte.":"For artists and labels. Built around the song and one strong visual idea.",
+    "Dirección · fotografía · edición · color":"Direction · cinematography · editing · color",
+    "Cortometraje":"Short film",
+    "Historias con tensión y un look terminado. Como director de fotografía, editor o ambos.":"Stories with tension and a finished look. As director of photography, editor or both.",
+    "Fotografía · edición · color":"Cinematography · editing · color",
+    "Piezas documentales para marcas, personas y lugares. Es de donde vengo.":"Documentary pieces for brands, people and places. It's where I come from.",
+    "Pedir este servicio":"Request this service",
+    "Cada pieza empieza desde cero. Llega con una idea, o solo con un objetivo. Afilamos la tuya, sumamos las nuestras y la convertimos en un concepto claro, un look y una pieza hecha solo para ti. Preproducción, producción y postproducción, todo desde un mismo equipo, para que lo que imaginaste llegue a la pantalla, pero más fuerte.":"Every piece starts from scratch. Come with an idea, or just a goal. We sharpen yours, add ours, and turn it into a clear concept, a look and a film made only for you. Pre-production, production and post-production, all from one team, so what you imagined reaches the screen, only stronger.",
+    "Todo":"All",
+    "Ver todo el trabajo":"See all work",
+    "Ver menos":"Show fewer",
+    "Filmado en México, Marruecos, Jordania, Chequia y Rusia":"Filmed in Mexico, Morocco, Jordan, Czechia and Russia",
     "Servicios":"Services",
     "Qué puedes contratar":"What you can hire",
     "Todos los proyectos empiezan con dirección visual: el look, el tratamiento y la lista de planos.":"Every project starts with visual direction: the look, the treatment and the shot list.",
@@ -1309,6 +1298,7 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
     "Vertical / Reels":"Vertical / Reels",
     "Video por conectar":"Video coming soon",
     "Trabajo":"Work",
+    "Ver el trabajo":"See the work",
     "Manifiesto":"Manifesto",
     "Proceso":"Process",
     "Contacto":"Contact",
@@ -1355,7 +1345,7 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
     "Dirijo en set sin invadir: explico la escena, me alejo y dejo que se repita, sin avisar cuándo grabo. Foco manual y luz práctica. Espero el instante en que la escena se vuelve verdadera y elijo esa toma.":"I direct on set without getting in the way: I explain the scene, step back and let it repeat, without saying when I'm recording. Manual focus and practical light. I wait for the instant the scene becomes true, and that's the take I choose.",
     "Del rodaje a la entrega: edito y corrijo color con la misma lógica con la que filmo. Ritmo, silencio y textura. Entrego piezas que se sienten vividas, no fabricadas, listas para cada plataforma.":"From the shoot to delivery: I edit and grade with the same logic I film with. Rhythm, silence and texture. I deliver pieces that feel lived, not manufactured, ready for each platform.",
     "Lo que no se ve":"What you don't see",
-    "Grabar es la mitad del trabajo. Esto es lo que hay detrás de un documental como":"Shooting is half the work. This is what's behind a documentary like",
+    "Construimos tu pieza en tres etapas: preproducción, producción y postproducción. Cada decisión se toma pensando en tu objetivo. Así fue en":"We build your piece in three stages: pre-production, production and post-production. Every decision is made with your goal in mind. Here is how that looked on",
     "Día de Muertos — Janitzio":"Day of the Dead — Janitzio",
     "3 días":"3 days",
     "de rodaje en comunidad":"of shooting with the community",
@@ -1370,12 +1360,13 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
     "Foco manual":"Manual focus",
     "Luz práctica":"Practical light",
     "Detrás de cámara":"Behind the scenes",
+    "Hacemos nuestro mejor esfuerzo por crear piezas de contenido únicas para ti":"We do our best to create unique pieces of content for you",
     "Cada historia es distinta. Cada proyecto se cotiza a su medida.":"Every story is different. Every project is quoted on its own terms.",
     "Hablemos":"Let's talk",
     "✕ Cerrar":"✕ Close"
   };
   var enIngles=false;
-  var waBtn=document.querySelector('.btn-wa');
+  var waBtns=document.querySelectorAll('.btn-wa');var waBtn=waBtns[0];
   var waFlot=document.getElementById('navWa');
   var waFlo2=document.getElementById('waFlotante');
   var waES=waBtn?waBtn.getAttribute('href'):null;
@@ -1400,7 +1391,7 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
         if(t&&dicc[t]){n._es=n.nodeValue;n.nodeValue=n.nodeValue.replace(t,dicc[t]);}
       }else if(n._es!=null){n.nodeValue=n._es;}
     });
-    if(waBtn&&waEN)waBtn.setAttribute('href',enIngles?waEN:waES);
+    if(waEN)waBtns.forEach(function(b){b.setAttribute('href',enIngles?waEN:waES);});
     if(waFlot&&waEN)waFlot.setAttribute('href',enIngles?waEN:waES);
     if(waFlo2&&waEN)waFlo2.setAttribute('href',enIngles?waEN:waES);
     langBtn.textContent=enIngles?'ES':'EN';
@@ -1412,5 +1403,14 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 })();
 </script>
 
+<script>
+document.querySelectorAll('[data-ir]').forEach(function(a){
+  a.addEventListener('click',function(){
+    if(window.galAbrir)window.galAbrir();
+    var c=document.querySelector('.chip[data-filtro="'+a.getAttribute('data-ir')+'"]');
+    if(c)c.click();
+  });
+});
+</script>
 </body>
 </html>
