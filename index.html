@@ -301,6 +301,12 @@ h2{
 .frame:not(.vert):hover img{transform:translateY(-50%) scale(calc(var(--zoom,1) * 1.03))}
 .frame:not(.vert){overflow:hidden}
 .frame:not(.vert) img{clip-path:inset(0)}
+/* Loops de 5–8 s que arrancan solos al hacer scroll (data-preview en cada .frame) */
+.frame video.loop-prev{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:0;pointer-events:none;transition:opacity .5s ease,transform .6s ease}
+.frame video.loop-prev.listo{opacity:1}
+.frame:not(.vert) video.loop-prev{inset:auto;left:0;top:50%;height:auto;aspect-ratio:2.39/1;transform:translateY(-50%)}
+.frame:not(.vert):hover video.loop-prev{transform:translateY(-50%) scale(1.03)}
+.frame .etiqueta,.frame .play{z-index:2}
 
 /* Servicios: franja de formatos */
 .formatos{display:flex;flex-wrap:wrap;column-gap:22px;row-gap:14px;align-items:baseline;margin:8px 0 30px}
@@ -555,7 +561,7 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 .frame .etiqueta{display:block;right:14px;line-height:1.5}
 .frame .etiqueta .fmt{white-space:nowrap}
 .frame .fmt{color:var(--tungsteno)}
-.frame::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background-color:rgba(14,13,11,.5);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23F0EBDF' d='M8 5v14l11-7z'/></svg>");background-repeat:no-repeat;background-position:55% 50%;background-size:24px;border:1px solid rgba(240,235,223,.7);transition:background-color .25s,border-color .25s;pointer-events:none}
+.frame::after{z-index:3;content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background-color:rgba(14,13,11,.5);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23F0EBDF' d='M8 5v14l11-7z'/></svg>");background-repeat:no-repeat;background-position:55% 50%;background-size:24px;border:1px solid rgba(240,235,223,.7);transition:background-color .25s,border-color .25s;pointer-events:none}
 .frame:hover::after{background-color:var(--tungsteno);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%230E0D0B' d='M8 5v14l11-7z'/></svg>");border-color:var(--tungsteno)}
 .gal-mas{display:flex;justify-content:center;margin-top:36px}
 .btn-mas{background:transparent;color:var(--papel);border:1px solid var(--papel);padding:17px 30px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:background .25s,color .25s}
@@ -746,22 +752,22 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
   </div>
   <span class="gal-sub mono" id="galReelsTit">Reels</span>
   <div class="galeria vertical" id="galReels">
-    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-video="https://player.vimeo.com/video/1231919314?h=b15d98d889&autoplay=1" href="https://vimeo.com/1231919314" target="_blank" rel="noopener">
+    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-preview="frames/loops/reel-baluarte-kids.mp4" data-poster="frames/loops/reel-baluarte-kids.jpg" data-video="https://player.vimeo.com/video/1231919314?h=b15d98d889&autoplay=1" href="https://vimeo.com/1231919314" target="_blank" rel="noopener">
       <span class="placeholder-txt mono">Vertical</span>
       <span class="etiqueta mono"><span class="num">V1</span> <span class="titulo-auto">Valdés Baluarte · Kids</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
-    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-video="https://player.vimeo.com/video/1231919053?h=e5a7c7217f&autoplay=1" href="https://vimeo.com/1231919053" target="_blank" rel="noopener">
+    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-preview="frames/loops/reel-teppanyaki.mp4" data-poster="frames/loops/reel-teppanyaki.jpg" data-video="https://player.vimeo.com/video/1231919053?h=e5a7c7217f&autoplay=1" href="https://vimeo.com/1231919053" target="_blank" rel="noopener">
       <span class="placeholder-txt mono">Vertical</span>
       <span class="etiqueta mono"><span class="num">V2</span> <span class="titulo-auto">Platillos · Historia</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
-    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-video="https://player.vimeo.com/video/1231919101?h=7bc4b174b3&autoplay=1" href="https://vimeo.com/1231919101" target="_blank" rel="noopener">
+    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-preview="frames/loops/reel-sunday-flambeed.mp4" data-poster="frames/loops/reel-sunday-flambeed.jpg" data-video="https://player.vimeo.com/video/1231919101?h=7bc4b174b3&autoplay=1" href="https://vimeo.com/1231919101" target="_blank" rel="noopener">
       <span class="placeholder-txt mono">Vertical</span>
       <span class="etiqueta mono"><span class="num">V3</span> <span class="titulo-auto">Sunday Sushi Bar · Flambé</span></span>
       <span class="play mono">▶ Ver</span>
     </a>
-    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-video="https://player.vimeo.com/video/1231919142?autoplay=1" href="https://vimeo.com/1231919142" target="_blank" rel="noopener">
+    <a class="frame vert" data-cat="reels" data-auto-titulo="1" data-preview="frames/loops/reel-sunday-sushi.mp4" data-poster="frames/loops/reel-sunday-sushi.jpg" data-video="https://player.vimeo.com/video/1231919142?autoplay=1" href="https://vimeo.com/1231919142" target="_blank" rel="noopener">
       <span class="placeholder-txt mono">Vertical</span>
       <span class="etiqueta mono"><span class="num">V4</span> <span class="titulo-auto">Vertical</span></span>
       <span class="play mono">▶ Ver</span>
@@ -1149,6 +1155,36 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
         es.forEach(function(e){if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){});}else v.pause();});
       },{threshold:0.05}).observe(hero);
     }
+  })();
+
+  /* Loops de la galería: se crean al entrar en pantalla y se pausan al salir.
+     Sin audio, sin descarga hasta que se ven. Respeta "reducir movimiento" y ahorro de datos.
+     Para sumar uno: data-preview="frames/loops/archivo.mp4" data-poster="frames/loops/archivo.jpg" en el .frame */
+  (function(){
+    var fs=document.querySelectorAll('.frame[data-preview]');
+    if(!fs.length||!('IntersectionObserver' in window))return;
+    var reducir=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var ahorro=navigator.connection&&navigator.connection.saveData;
+    if(reducir||ahorro)return;
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        var fr=e.target,v=fr._loop;
+        if(e.isIntersecting){
+          if(!v){
+            v=document.createElement('video');
+            v.className='loop-prev';v.muted=true;v.loop=true;v.playsInline=true;
+            v.setAttribute('muted','');v.setAttribute('playsinline','');
+            v.setAttribute('aria-hidden','true');v.tabIndex=-1;v.preload='auto';
+            if(fr.dataset.poster)v.poster=fr.dataset.poster;
+            v.addEventListener('playing',function(){v.classList.add('listo');});
+            v.src=fr.dataset.preview;
+            fr.appendChild(v);fr._loop=v;
+          }
+          var p=v.play();if(p&&p.catch)p.catch(function(){});
+        }else if(v){v.pause();}
+      });
+    },{threshold:0.35});
+    fs.forEach(function(fr){io.observe(fr);});
   })();
 
   /* Galería: 6 destacados + reels; "Ver todo" abre los filtros */
