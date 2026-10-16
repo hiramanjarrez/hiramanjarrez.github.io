@@ -535,23 +535,12 @@ footer{
 @keyframes empuja{0%,100%{transform:translateX(0)}50%{transform:translateX(7px)}}
 @media(prefers-reduced-motion:reduce){.desliza i{animation:none}}
 
-/* Aviso temporal: sitio en construcción */
+/* Utilidad: ocultar temporalmente un elemento */
 .oculto-temp{display:none!important}
-.aviso-obra{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;align-items:center;justify-content:center;gap:14px;
-  padding:10px 52px calc(10px + env(safe-area-inset-bottom,0px)) 18px;background:rgba(13,12,10,.94);border-top:1px solid rgba(210,162,76,.55);
-  color:var(--papel);font-size:.7rem;letter-spacing:.12em;line-height:1.5;text-align:center;backdrop-filter:blur(4px)}
-.aviso-obra.cerrado{display:none}
-.aviso-cinta{flex:none;width:34px;height:10px;border-radius:2px;background:repeating-linear-gradient(135deg,var(--tungsteno) 0 6px,#0d0c0a 6px 12px)}
-.aviso-x{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:40px;height:40px;border:0;background:none;color:var(--papel);font-size:1.5rem;line-height:1;cursor:pointer;opacity:.75}
-.aviso-x:hover{opacity:1}
-body.con-aviso{padding-bottom:58px}
-@media(max-width:560px){.aviso-obra{font-size:.62rem;letter-spacing:.08em;gap:10px;padding-left:12px}.aviso-cinta{width:24px}body.con-aviso{padding-bottom:64px}}
 .wa-flotante{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:55;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(0,0,0,.45);transition:transform .25s,background .25s}
 footer{padding-right:88px}
 .wa-flotante:hover{transform:scale(1.07);background:#3EE67F}
 .wa-flotante svg{width:32px;height:32px;fill:currentColor}
-body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
-@media(max-width:560px){body.con-aviso .wa-flotante{bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
 
 /* ---- Galería simple: 6 destacados + reels, y "Ver todo" ---- */
 #filtros{display:none}
@@ -586,7 +575,7 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
     <li><a href="#proceso">Proceso</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#contacto">Contacto</a></li>
-    <li><a class="nav-cta" id="navWa" href="#" target="_blank" rel="noopener">Hablemos</a></li>
+    <li><a class="nav-cta" id="navWa" href="#" target="_blank" rel="noopener">Chatea conmigo</a></li>
     <li><button class="lang-btn" id="langBtn" type="button" aria-label="Switch to English">EN</button></li>
   </ul>
 </nav>
@@ -913,11 +902,6 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 </main>
 
 <a class="wa-flotante" id="waFlotante" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.9-1.4A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.6-1.2.1-.2 0-.4 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a3 3 0 0 0-1 2.2c0 1.3 1 2.6 1.1 2.8.1.2 2 3 4.8 4.2 2.8 1.2 2.8.8 3.3.8.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4Z"/></svg></a>
-<div class="aviso-obra mono" id="avisoObra" role="status">
-  <span class="aviso-cinta" aria-hidden="true"></span>
-  <span class="aviso-txt">Sitio en construcción · pronto habrá más trabajo y detalles</span>
-  <button type="button" class="aviso-x" id="cerrarAviso" aria-label="Cerrar aviso" title="Cerrar">&times;</button>
-</div>
 
 <footer class="mono">
   <span>© 2026 Hiram Manjarrez</span>
@@ -1125,13 +1109,6 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
   })();
 
 
-  /* Aviso "sitio en construcción": se puede cerrar y vuelve a aparecer al recargar */
-  (function(){
-    var av=document.getElementById('avisoObra'),x=document.getElementById('cerrarAviso');
-    if(!av)return;
-    document.body.classList.add('con-aviso');
-    if(x)x.addEventListener('click',function(){av.classList.add('cerrado');document.body.classList.remove('con-aviso');});
-  })();
 
 
   /* Video de la portada: se desvanece justo antes y después del reinicio para ocultar el salto del loop */
@@ -1275,7 +1252,6 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
      diccionario. "Observo. Espero. Disparo." no se traduce: es la firma. */
   var dicc={
     "Timeline":"Timeline",
-    "Sitio en construcción · pronto habrá más trabajo y detalles":"Site under construction · more work and details coming soon",
     "Desliza":"Swipe",
     "Fashion film":"Fashion film",
     "Una pieza para diseñadores y marcas de moda, donde la mirada es el brief.":"A piece for designers and fashion brands, where the eye is the brief.",
@@ -1401,7 +1377,7 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
     "Detrás de cámara":"Behind the scenes",
     "Hacemos nuestro mejor esfuerzo por crear piezas de contenido únicas para ti":"We do our best to create unique pieces of content for you",
     "Cada historia es distinta. Cada proyecto se cotiza a su medida.":"Every story is different. Every project is quoted on its own terms.",
-    "Hablemos":"Let's talk",
+    "Chatea conmigo":"Chat with me",
     "✕ Cerrar":"✕ Close"
   };
   var enIngles=false;
