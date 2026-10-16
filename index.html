@@ -216,6 +216,8 @@ h2{
 }
 .btn-reel:hover{background:var(--papel);transform:translateY(-2px)}
 .btn-reel .tri{font-size:.85rem}
+.hero-cta .btn-reel{margin-top:0;opacity:1;animation:none;padding:17px 28px;font-size:.78rem;font-weight:700}
+@media(max-width:480px){.hero-cta .btn-reel{padding:15px 20px;font-size:.72rem}}
 .lightbox{
   position:fixed;inset:0;z-index:100;background:rgba(10,9,7,.96);
   display:none;align-items:center;justify-content:center;padding:clamp(16px,4vw,60px);
@@ -608,7 +610,7 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
     <span class="s-base"><i class="punto" aria-hidden="true"></i><span>Base en</span><span class="s-lugar"><b class="s-dubai">Dubái</b>, EAU · Worldwide</span></span>
   </div>
   <div class="hero-cta">
-    <a class="btn-ver mono" href="#trabajo">Ver el trabajo</a>
+    <button class="btn-reel" id="abrirReel" type="button"><span class="tri">▶&#xFE0E;</span> Ver showreel — 1:34</button>
   </div>
   <div class="hero-cats mono" role="navigation" aria-label="Ir directo a una categoría">
     <a href="#trabajo" data-ir="comercial">Brand films</a>
@@ -620,7 +622,6 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
     <span class="hc-br" aria-hidden="true"></span>
     <a class="hc-serv" href="#servicios">Servicios</a>
   </div>
-  <button class="btn-reel oculto-temp" id="abrirReel" type="button"><span class="tri">▶&#xFE0E;</span> Ver reel — 60 seg</button>
 </header>
 
 <main>
@@ -925,11 +926,7 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 
 <div class="lightbox" id="reelBox" role="dialog" aria-modal="true" aria-label="Reel de Hiram Manjarrez">
   <button class="cerrar" id="cerrarReel" type="button">✕ Cerrar</button>
-  <!-- ▶ TU REEL AQUÍ (el mismo de 60s, esta vez CON sonido):
-       Opción A — archivo propio: descomenta el <video> y pon la ruta.
-       Opción B — Vimeo: reemplaza el <video> por:
-       <iframe src="https://player.vimeo.com/video/TU_ID?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
-  <video id="reelVideo" src="reel.mp4" controls playsinline preload="none" poster="frames/poster.jpg"></video>
+  <!-- El reel se carga como iframe de Vimeo al abrir (ver abrir.addEventListener más abajo). -->
 </div>
 
 <script>
@@ -945,9 +942,8 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
   }
   abrir.addEventListener('click',function(){
     disparador=abrir;
-    box.classList.add('abierto');
-    if(vid){vid.currentTime=0;vid.play().catch(function(){});}
-    try{cerrar.focus({preventScroll:true});}catch(e){}
+    /* Demo Reel 2026 (Vimeo 1236494776), con sonido */
+    abrirEmbed('https://player.vimeo.com/video/1236494776?autoplay=1&title=0&byline=0&portrait=0',false);
   });
   function cerrarBox(){
     box.classList.remove('abierto');
@@ -1350,7 +1346,7 @@ body.con-aviso .wa-flotante{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
     "Dubái":"Dubai",
     ", EAU · Worldwide":", UAE · Worldwide",
     "Worldwide · Base en Dubái":"Worldwide · Based in Dubai",
-    "Ver reel — 60 seg":"Watch reel — 60 sec",
+    "Ver showreel — 1:34":"Watch showreel — 1:34",
     "Trabajo seleccionado":"Selected work",
     "Una mirada, todos los formatos":"One eye, every format",
     "Es la misma sensibilidad aplicada a formatos distintos. Cambia el encargo; la mirada no.":"The same sensibility applied to different formats. The brief changes; the eye doesn't.",
